@@ -10,25 +10,25 @@ The formal IS-05 specification is provided at in [this GitHub repository](https:
 
 The links below are for the “master” branch of the repo. This is typically the same as the most recent release of the Specification. Links to other releases (tags) and other branches appear later in the page.
 
-# Documentation for master
+# Documentation for v1.0_spec
 
- - [Overview](branches/master/docs/1.0._Overview.md)
- - [APIs](branches/master/docs/2.0._APIs.md)
-   - [Client Side Implementation](branches/master/docs/2.1._APIs_-_Client_Side_Implementation.md)
-   - [Server Side Implementation](branches/master/docs/2.2._APIs_-_Server_Side_Implementation.md)
- - [Interoperability](branches/master/docs/3.0._Interoperability.md)
-   - [NMOS IS-04](branches/master/docs/3.1._Interoperability_-_NMOS_IS-04.md)
-   - [Non-NMOS Devices](branches/master/docs/3.2._Interoperability_-_Non-NMOS_Devices.md)
- - [Behaviour](branches/master/docs/4.0._Behaviour.md)
-   - [RTP Transport Type](branches/master/docs/4.1._Behaviour_-_RTP_Transport_Type.md)
- - [Upgrade Path](branches/master/docs/5.0._Upgrade_Path.md)
+ - [Overview](tags/v1.0_spec/docs/1.0._Overview.md)
+ - [APIs](tags/v1.0_spec/docs/2.0._APIs.md)
+   - [Client Side Implementation](tags/v1.0_spec/docs/2.1._APIs_-_Client_Side_Implementation.md)
+   - [Server Side Implementation](tags/v1.0_spec/docs/2.2._APIs_-_Server_Side_Implementation.md)
+ - [Interoperability](tags/v1.0_spec/docs/3.0._Interoperability.md)
+   - [NMOS IS-04](tags/v1.0_spec/docs/3.1._Interoperability_-_NMOS_IS-04.md)
+   - [Non-NMOS Devices](tags/v1.0_spec/docs/3.2._Interoperability_-_Non-NMOS_Devices.md)
+ - [Behaviour](tags/v1.0_spec/docs/4.0._Behaviour.md)
+   - [RTP Transport Type](tags/v1.0_spec/docs/4.1._Behaviour_-_RTP_Transport_Type.md)
+ - [Upgrade Path](tags/v1.0_spec/docs/5.0._Upgrade_Path.md)
 
-## APIs for master
- - [ConnectionAPI](branches/master/html-APIs/ConnectionAPI.html)
+## APIs for v1.0_spec
+ - [ConnectionAPI](tags/v1.0_spec/html-APIs/ConnectionAPI.html)
 
-### [JSON Schemas](branches/master/html-APIs/schemas/)
+### [JSON Schemas](tags/v1.0_spec/html-APIs/schemas/)
 
-### [Examples](branches/master/examples/)
+### [Examples](tags/v1.0_spec/examples/)
 
 ## Branches
 
@@ -38,13 +38,9 @@ The links below are for the “master” branch of the repo. This is typically t
 
 [v1.1-dev](branches/v1.1-dev/)
 
-## Tags
+## Tags (Releases)
 
 [v1.0](tags/v1.0/)
 
 [v1.0_spec](tags/v1.0_spec/)
-
-[workshop-end](tags/workshop-end/)
-
-[workshop2-end](tags/workshop2-end/)
 

@@ -25,13 +25,23 @@ function extract {
 
 }
 
+# Find out which branches and tags will be shown
+. ./repo-settings.sh
 
 mkdir branches
 for branch in $(cd source-repo; git branch -r | sed 's:origin/::' | grep -v HEAD | grep -v gh-pages); do
-    extract "$branch" "branches/$branch"
+    if [[ "$branch" =~ $SHOW_BRANCHES ]]; then
+        extract "$branch" "branches/$branch"
+    else
+        echo Skipping branch $branch
+    fi
 done
 
 mkdir tags
 for tag in $(cd source-repo; git tag); do
-    extract "tags/$tag" "tags/$tag"
+    if [[ "$tag" =~ $SHOW_TAGS ]]; then
+        extract "tags/$tag" "tags/$tag"
+    else
+        echo Skipping tag $tag
+    fi
 done

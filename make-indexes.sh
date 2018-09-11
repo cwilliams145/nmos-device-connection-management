@@ -1,8 +1,11 @@
 #!/bin/bash
 
-# TODO: Move some of the common code into functions (DRY)
+# TODO: Move some of the common/looped code into functions (DRY)
 
 shopt -s nullglob
+
+# Get default release
+. ./repo-settings.sh
 
 # Filename for index in each dir
 INDEX=index.md
@@ -71,9 +74,9 @@ CONTENTS=index-contents.md
 
 echo "Making top level $INDEX"
 
-echo "Adding in contents of master $INDEX"
+echo "Adding in contents of $INDEX for default release $DEFAULT_RELEASE"
 # Shameful but effective - correct the links while copying text
-sed 's:(:(branches/master/:' "branches/master/$INDEX" > "$CONTENTS"
+sed "s:(:(tags/$DEFAULT_RELEASE/:" "tags/$DEFAULT_RELEASE/$INDEX" > "$CONTENTS"
 
 echo -e "\n## Branches" >> "$CONTENTS"
 for dir in branches/*; do
@@ -81,12 +84,11 @@ for dir in branches/*; do
     echo -e "\n[$branch](branches/$branch/)" >>  "$CONTENTS"
 done
 
-echo -e "\n## Tags" >> "$CONTENTS"
+echo -e "\n## Tags (Releases)" >> "$CONTENTS"
 for dir in tags/*; do
     tag="${dir##*/}"
     echo -e "\n[$tag](tags/$tag/)" >>  "$CONTENTS"
 done
 echo >> "$CONTENTS"
-
 
 cat "$HEAD" "$CONTENTS" > "$INDEX"
