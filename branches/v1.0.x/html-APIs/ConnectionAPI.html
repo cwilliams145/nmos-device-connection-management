@@ -253,12 +253,9 @@
       "code": {
         "description": "HTTP status code that would have resulted from an individual activation on this device",
         "type": "integer",
-        "enum": [
-          200,
-          202,
-          400,
-          404,
-          500
+        "anyOf": [
+          { "minimum": 200, "maximum": 299 },
+          { "minimum": 400, "maximum": 599 }
         ]
       },
       "error": {
@@ -291,7 +288,7 @@
     "debug": "&lt;stack trace&gt;"
   }
 ]
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>The body of the request did not validate against the schema (ignoring the content of the <code>params</code> field - these are validated individually by each sender/receiver and failures are recorded in the response object for a 200 return).</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>The body of the request did not validate against the schema (ignoring the content of the <code>params</code> field - these are validated individually by each sender and failures are recorded in the response object for a 200 return).</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes the standard error response which is returned with HTTP codes 400 and above",
@@ -382,46 +379,7 @@
     }
   }
 ]
-</code></pre></div></div><div class="tab-pane" id="bulk_receivers_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Gives the status of each of the individual receivers after the staging. Will be returned even if individual parameters in <code>params</code> did not validate. The response object provides the HTTP status code that would have been returned by each receiver had the request been carried out individually.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "description": "Describes a response to a bulk activation request",
-  "title": "Bulk activation response",
-  "type": "array",
-  "items": {
-    "type": "object",
-    "required": [
-      "id",
-      "code"
-    ],
-    "properties": {
-      "id": {
-        "description": "ID of a device to be activated",
-        "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-      },
-      "code": {
-        "description": "HTTP status code that would have resulted from an individual activation on this device",
-        "type": "integer",
-        "enum": [
-          200,
-          202,
-          400,
-          404,
-          500
-        ]
-      },
-      "error": {
-        "description": "Human readable message which is suitable for user interface display, and helpful to the user. Only included if &#39;code&#39; indicates an error state",
-        "type": "string"
-      },
-      "debug": {
-        "description": "Debug information which may assist a programmer working with the API. Only included if &#39;code&#39; indicates an error state",
-        "type": ["null", "string"]
-      }
-    }
-  }
-}
-</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>[{
+</code></pre></div></div><div class="tab-pane" id="bulk_receivers_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Gives the status of each of the individual receivers after the staging. Will be returned even if individual parameters in <code>params</code> did not validate. The response object provides the HTTP status code that would have been returned by each receiver had the request been carried out individually.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: Can not resolve v1.0-bulk-response.json</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[{
     "id": "0a174530-e3cf-11e6-bf01-fe55135034f3",
     "code": 200
   },
@@ -440,7 +398,7 @@
     "debug": "&lt;stack trace&gt;"
   }
 ]
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>The body of the request did not validate against the schema (ignoring the content of the <code>params</code> field - these are validated individually by each sender/receiver and failures are recorded in the response object for a 200 return).</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>The body of the request did not validate against the schema (ignoring the content of the <code>params</code> field - these are validated individually by each receiver and failures are recorded in the response object for a 200 return).</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes the standard error response which is returned with HTTP codes 400 and above",
@@ -481,13 +439,13 @@
   "171d5c80-7fff-4c23-9383-46503eb1c63e/",
   "a2655c48-8a46-4c82-b9bc-98760d59d7f8/"
 ]
-</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid_"><span class="parent">/single/senders</span>/{senderId}</a> <span class="methods"><a href="#single_senders__senderid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List all the API endpoints for a single senders.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders</span>/{senderId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>List all the API endpoints for a single senders.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid_"><span class="parent">/single/senders</span>/{senderId}</a> <span class="methods"><a href="#single_senders__senderid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List all the API endpoints for a single sender.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders</span>/{senderId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>List all the API endpoints for a single sender.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "constraints/",
   "staged/",
   "active/",
   "transportfile/"
 ]
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested Sender ID does not exist.</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__constraints"><span class="parent">/single/senders/{senderId}</span>/constraints</a> <span class="methods"><a href="#single_senders__senderid__constraints_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__constraints" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__constraints_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the sender/receiver does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the sender/receiver if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__constraints_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/constraints</h4></div><div class="modal-body"><div class="alert alert-info"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the sender/receiver does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the sender/receiver if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__constraints_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__constraints_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__constraints_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__constraints_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested Sender ID does not exist.</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__constraints"><span class="parent">/single/senders/{senderId}</span>/constraints</a> <span class="methods"><a href="#single_senders__senderid__constraints_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__constraints" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__constraints_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the sender does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the sender if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__constraints_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/constraints</h4></div><div class="modal-body"><div class="alert alert-info"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the sender does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the sender if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__constraints_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__constraints_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__constraints_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__constraints_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "array",
   "description": "Used to express the dynamic constraints on transport parameters. These constraints may be set and changed at run time. Parameters must also conform with constraints inferred from the specification. Every transport parameter must have an entry, even if it is only an empty object.",
@@ -497,6 +455,9 @@
     "type": "object",
     "description": "Contains the constraints for on transport leg",
     "properties": {
+      "multicast_ip": {
+        "$ref": "#/definitions/constraint"
+      },
       "destination_ip": {
         "$ref": "#/definitions/constraint"
       },
@@ -840,13 +801,11 @@
         "string",
         "null"
       ],
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-      "default": null
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "master_enable": {
-      "description": "Master on/off control for receiver",
-      "type": "boolean",
-      "default": true
+      "description": "Master on/off control for sender",
+      "type": "boolean"
     },
     "activation": {
       "$ref": "v1.0-activation-response-schema.json"
@@ -1085,13 +1044,11 @@
         "string",
         "null"
       ],
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-      "default": null
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "master_enable": {
-      "description": "Master on/off control for receiver",
-      "type": "boolean",
-      "default": true
+      "description": "Master on/off control for sender",
+      "type": "boolean"
     },
     "activation": {
       "$ref": "v1.0-activation-response-schema.json"
@@ -1204,13 +1161,11 @@
         "string",
         "null"
       ],
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-      "default": null
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "master_enable": {
-      "description": "Master on/off control for receiver",
-      "type": "boolean",
-      "default": true
+      "description": "Master on/off control for sender",
+      "type": "boolean"
     },
     "activation": {
       "$ref": "v1.0-activation-response-schema.json"
@@ -1349,7 +1304,7 @@
   "error": "Could not establish link to hardware",
   "debug": null
 }
-</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__active"><span class="parent">/single/senders/{senderId}</span>/active</a> <span class="methods"><a href="#single_senders__senderid__active_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__active" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__active_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get active sender parameters. On activation all instances of "auto" should be resolved into the actual values that will be used by the sender. For example if a sender has the <code>destination_ip</code> parameter set to <code>auto</code> in /staged then <code>destination_ip</code> in /active should show the multicast IP chosen by the receiver. The parameter will remain set to <code>auto</code> in staged, and may be resolved to a different value on each subsequent activation. In cases, such as <code>destination_ip</code>, where the parameter changing unexpectedly at activation through re-resolution may be undesirable, care should be taken in implementation to manage this.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__active_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/active</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get active sender parameters. On activation all instances of "auto" should be resolved into the actual values that will be used by the sender. For example if a sender has the <code>destination_ip</code> parameter set to <code>auto</code> in /staged then <code>destination_ip</code> in /active should show the multicast IP chosen by the receiver. The parameter will remain set to <code>auto</code> in staged, and may be resolved to a different value on each subsequent activation. In cases, such as <code>destination_ip</code>, where the parameter changing unexpectedly at activation through re-resolution may be undesirable, care should be taken in implementation to manage this.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__active_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__active_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__active_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__active_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__active"><span class="parent">/single/senders/{senderId}</span>/active</a> <span class="methods"><a href="#single_senders__senderid__active_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__active" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__active_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get active sender parameters. On activation all instances of "auto" must be resolved into the actual values that will be used by the sender, unless there is an error condition. For example if a sender has the <code>destination_ip</code> parameter set to <code>auto</code> in /staged then <code>destination_ip</code> in /active should show the multicast IP chosen by the sender. The parameter will remain set to <code>auto</code> in staged, and may be resolved to a different value on each subsequent activation. In cases, such as <code>destination_ip</code>, where the parameter changing unexpectedly at activation through re-resolution may be undesirable, care should be taken in implementation to manage this. If there is an error condition that means <code>auto</code> cannot be resolved, the active transport parameters must not change, and the underlying sender must continue as before.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__active_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/active</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get active sender parameters. On activation all instances of "auto" must be resolved into the actual values that will be used by the sender, unless there is an error condition. For example if a sender has the <code>destination_ip</code> parameter set to <code>auto</code> in /staged then <code>destination_ip</code> in /active should show the multicast IP chosen by the sender. The parameter will remain set to <code>auto</code> in staged, and may be resolved to a different value on each subsequent activation. In cases, such as <code>destination_ip</code>, where the parameter changing unexpectedly at activation through re-resolution may be undesirable, care should be taken in implementation to manage this. If there is an error condition that means <code>auto</code> cannot be resolved, the active transport parameters must not change, and the underlying sender must continue as before.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__active_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__active_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__active_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__active_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes a sender",
@@ -1368,13 +1323,11 @@
         "string",
         "null"
       ],
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-      "default": null
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "master_enable": {
-      "description": "Master on/off control for receiver",
-      "type": "boolean",
-      "default": true
+      "description": "Master on/off control for sender",
+      "type": "boolean"
     },
     "activation": {
       "$ref": "v1.0-activation-response-schema.json"
@@ -1481,7 +1434,7 @@
   "staged/",
   "active/"
 ]
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__constraints"><span class="parent">/single/receivers/{receiverId}</span>/constraints</a> <span class="methods"><a href="#single_receivers__receiverid__constraints_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid__constraints" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__constraints_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the sender/receiver does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the sender/receiver if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__constraints_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/constraints</h4></div><div class="modal-body"><div class="alert alert-info"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the sender/receiver does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the sender/receiver if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__constraints_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__constraints_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__constraints_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__constraints_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__constraints"><span class="parent">/single/receivers/{receiverId}</span>/constraints</a> <span class="methods"><a href="#single_receivers__receiverid__constraints_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid__constraints" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__constraints_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the receiver does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the receiver if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__constraints_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/constraints</h4></div><div class="modal-body"><div class="alert alert-info"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the receiver does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the receiver if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__constraints_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__constraints_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__constraints_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__constraints_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "array",
   "description": "Used to express the dynamic constraints on transport parameters. These constraints may be set and changed at run time. Parameters must also conform with constraints inferred from the specification. Every transport parameter must have an entry, even if it is only an empty object.",
@@ -1491,6 +1444,9 @@
     "type": "object",
     "description": "Contains the constraints for on transport leg",
     "properties": {
+      "multicast_ip": {
+        "$ref": "#/definitions/constraint"
+      },
       "destination_ip": {
         "$ref": "#/definitions/constraint"
       },
@@ -1756,13 +1712,11 @@
         "string",
         "null"
       ],
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-      "default": null
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "master_enable": {
       "description": "Master on/off control for receiver",
-      "type": "boolean",
-      "default": true
+      "type": "boolean"
     },
     "activation": {
       "$ref": "v1.0-activation-response-schema.json"
@@ -1781,16 +1735,14 @@
           "type": [
             "string",
             "null"
-          ],
-          "default": null
+          ]
         },
         "type": {
           "description": "IANA assigned media type for file (e.g application/sdp)",
           "type": [
             "string",
             "null"
-          ],
-          "default": null
+          ]
         }
       }
     },
@@ -1935,8 +1887,7 @@
     },
     "master_enable": {
       "description": "Master on/off control for receiver",
-      "type": "boolean",
-      "default": true
+      "type": "boolean"
     },
     "activation": {
       "$ref": "v1.0-activation-schema.json"
@@ -2090,13 +2041,11 @@
         "string",
         "null"
       ],
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-      "default": null
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "master_enable": {
       "description": "Master on/off control for receiver",
-      "type": "boolean",
-      "default": true
+      "type": "boolean"
     },
     "activation": {
       "$ref": "v1.0-activation-response-schema.json"
@@ -2115,16 +2064,14 @@
           "type": [
             "string",
             "null"
-          ],
-          "default": null
+          ]
         },
         "type": {
           "description": "IANA assigned media type for file (e.g application/sdp)",
           "type": [
             "string",
             "null"
-          ],
-          "default": null
+          ]
         }
       }
     },
@@ -2176,7 +2123,7 @@
     "activation_time": null
   },
   "transport_file": {
-    "data": "v=0o=- 1496222842 1496222842 IN IP4 172.29.226.25\r\ns=IP Studio Stream\r\nt=0 0\r\nm=video 5010 RTP/AVP 103\r\nc=IN IP4 232.250.98.80/32\r\na=source-filter:incl IN IP4 232.250.98.80 172.29.226.25\r\na=rtpmap:103 raw/90000\r\na=fmtp:103 sampling=YCbCr-4:2:2; width=1920; height=1080; depth=10; interlace=1; framerate=25; colorimetry=BT709-2\r\na=mediaclk:direct=1876655126 rate=90000\r\na=extmap:1 urn:x-nmos:rtp-hdrext:origin-timestamp\r\na=extmap:2 urn:ietf:params:rtp-hdrext:smpte-tc 3600@90000/25\r\na=extmap:3 urn:x-nmos:rtp-hdrext:flow-id\r\na=extmap:4 urn:x-nmos:rtp-hdrext:source-id\r\na=extmap:5 urn:x-nmos:rtp-hdrext:grain-flags\r\na=extmap:7 urn:x-nmos:rtp-hdrext:sync-timestamp\r\na=extmap:9 urn:x-nmos:rtp-hdrext:grain-duration\r\na=ts-refclk:ptp=IEEE1588-2008:08-00-11-FF-FE-21-E1-B0\r\n",
+    "data": "v=0\r\no=- 1496222842 1496222842 IN IP4 172.29.226.25\r\ns=IP Studio Stream\r\nt=0 0\r\nm=video 5010 RTP/AVP 103\r\nc=IN IP4 232.250.98.80/32\r\na=source-filter:incl IN IP4 232.250.98.80 172.29.226.25\r\na=rtpmap:103 raw/90000\r\na=fmtp:103 sampling=YCbCr-4:2:2; width=1920; height=1080; depth=10; interlace=1; framerate=25; colorimetry=BT709-2\r\na=mediaclk:direct=1876655126 rate=90000\r\na=extmap:1 urn:x-nmos:rtp-hdrext:origin-timestamp\r\na=extmap:2 urn:ietf:params:rtp-hdrext:smpte-tc 3600@90000/25\r\na=extmap:3 urn:x-nmos:rtp-hdrext:flow-id\r\na=extmap:4 urn:x-nmos:rtp-hdrext:source-id\r\na=extmap:5 urn:x-nmos:rtp-hdrext:grain-flags\r\na=extmap:7 urn:x-nmos:rtp-hdrext:sync-timestamp\r\na=extmap:9 urn:x-nmos:rtp-hdrext:grain-duration\r\na=ts-refclk:ptp=IEEE1588-2008:08-00-11-FF-FE-21-E1-B0\r\n",
     "type": "application/sdp"
   },
   "transport_params": [{
@@ -2254,13 +2201,11 @@
         "string",
         "null"
       ],
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-      "default": null
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "master_enable": {
       "description": "Master on/off control for receiver",
-      "type": "boolean",
-      "default": true
+      "type": "boolean"
     },
     "activation": {
       "$ref": "v1.0-activation-response-schema.json"
@@ -2279,16 +2224,14 @@
           "type": [
             "string",
             "null"
-          ],
-          "default": null
+          ]
         },
         "type": {
           "description": "IANA assigned media type for file (e.g application/sdp)",
           "type": [
             "string",
             "null"
-          ],
-          "default": null
+          ]
         }
       }
     },
@@ -2335,7 +2278,7 @@
   "sender_id": "5709255c-c0ae-4e1e-99a0-e872e83e48e0",
   "master_enable": true,
   "activation": {
-    "mode": "activate_scheduled_relative",
+    "mode": "activate_scheduled_absolute",
     "requested_time": "1496739064:0",
     "activation_time": "1496739064:2500"
   },
@@ -2422,7 +2365,7 @@
   "error": "Could not establish link to hardware",
   "debug": null
 }
-</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__active"><span class="parent">/single/receivers/{receiverId}</span>/active</a> <span class="methods"><a href="#single_receivers__receiverid__active_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid__active" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__active_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get active receiver parameters. On activation all instances of "auto" should be resolved into the actual values that will be used by the receiver. For example if a receiver has the <code>interface_ip</code> parameter set to <code>auto</code> in /staged then <code>interface_ip</code> in /active should show the IP address of the interface chosen by the receiver. The parameter will remain set to <code>auto</code> in staged, and may be resolved to a different value on each subsequent activation. In cases, such as <code>interface_ip</code>, where the parameter changing unexpectedly at activation through re-resolution may be undesirable, care should be taken in implementation to manage this.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__active_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/active</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get active receiver parameters. On activation all instances of "auto" should be resolved into the actual values that will be used by the receiver. For example if a receiver has the <code>interface_ip</code> parameter set to <code>auto</code> in /staged then <code>interface_ip</code> in /active should show the IP address of the interface chosen by the receiver. The parameter will remain set to <code>auto</code> in staged, and may be resolved to a different value on each subsequent activation. In cases, such as <code>interface_ip</code>, where the parameter changing unexpectedly at activation through re-resolution may be undesirable, care should be taken in implementation to manage this.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__active_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__active_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__active_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__active_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__active"><span class="parent">/single/receivers/{receiverId}</span>/active</a> <span class="methods"><a href="#single_receivers__receiverid__active_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid__active" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__active_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get active receiver parameters. On activation all instances of "auto" must be resolved into the actual values that will be used by the receiver, unless there is an error condition. For example if a receiver has the <code>interface_ip</code> parameter set to <code>auto</code> in /staged then <code>interface_ip</code> in /active should show the IP address of the interface chosen by the receiver. The parameter will remain set to <code>auto</code> in staged, and may be resolved to a different value on each subsequent activation. In cases, such as <code>interface_ip</code>, where the parameter changing unexpectedly at activation through re-resolution may be undesirable, care should be taken in implementation to manage this. If there is an error condition that means <code>auto</code> cannot be resolved, the active transport parameters must not change, and the underlying receiver must continue as before.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__active_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/active</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get active receiver parameters. On activation all instances of "auto" must be resolved into the actual values that will be used by the receiver, unless there is an error condition. For example if a receiver has the <code>interface_ip</code> parameter set to <code>auto</code> in /staged then <code>interface_ip</code> in /active should show the IP address of the interface chosen by the receiver. The parameter will remain set to <code>auto</code> in staged, and may be resolved to a different value on each subsequent activation. In cases, such as <code>interface_ip</code>, where the parameter changing unexpectedly at activation through re-resolution may be undesirable, care should be taken in implementation to manage this. If there is an error condition that means <code>auto</code> cannot be resolved, the active transport parameters must not change, and the underlying receiver must continue as before.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__active_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__active_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__active_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__active_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes a receiver",
@@ -2442,13 +2385,11 @@
         "string",
         "null"
       ],
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-      "default": null
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
     "master_enable": {
       "description": "Master on/off control for receiver",
-      "type": "boolean",
-      "default": true
+      "type": "boolean"
     },
     "activation": {
       "$ref": "v1.0-activation-response-schema.json"
@@ -2467,16 +2408,14 @@
           "type": [
             "string",
             "null"
-          ],
-          "default": null
+          ]
         },
         "type": {
           "description": "IANA assigned media type for file (e.g application/sdp)",
           "type": [
             "string",
             "null"
-          ],
-          "default": null
+          ]
         }
       }
     },
