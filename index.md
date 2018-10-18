@@ -38,13 +38,13 @@ The links immediately below are for the _most recent approved release_ of the Sp
 
 ## Branches
 
-[master](branches/master/)
-
 [v1.0.x](branches/v1.0.x/)
 
 [v1.1-dev](branches/v1.1-dev/)
 
 ## Tags (Releases)
+
+[v1.0.1](tags/v1.0.1/)
 
 [v1.0_as_approved](tags/v1.0_as_approved/)
 
