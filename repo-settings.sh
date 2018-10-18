@@ -10,4 +10,4 @@ DEFAULT_RELEASE=v1.0.1
 
 # Show branches and tags (releases) matching the following regexes
 SHOW_BRANCHES='v[0-9]*\.[0-9]*'
-SHOW_TAGS='v[0-9]*\.[0-9]*' # This excludes e.g. v1.0_spec
+SHOW_TAGS='v[0-9]*\.[0-9]*'
