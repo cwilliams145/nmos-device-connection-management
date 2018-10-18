@@ -1,5 +1,12 @@
 #!/bin/bash
 
+RAML2HTML="$PWD/node_modules/raml2html/bin/raml2html"
+
+if [ ! -x $RAML2HTML ]; then
+    echo "fatal: Cannot find raml2html (maybe need to make build-tools?)"
+    exit 1
+fi
+
 function extract {
     checkout=$1
     target_dir=$2
@@ -17,7 +24,7 @@ function extract {
                 perl -pi.orig -e 's=("\$ref": ")(.*)(\.json)=$1schemas/$2$3=' schemas/*.json
                 for i in *.raml; do
                     echo "Generating HTML from $i..."
-                    raml2html $i > "${i%%.raml}.html"
+                    $RAML2HTML $i > "${i%%.raml}.html"
                 done
                 for i in schemas/*.json.orig; do
                     mv "$i" "${i%%.orig}"
