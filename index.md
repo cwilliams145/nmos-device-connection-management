@@ -44,8 +44,6 @@ The links immediately below are for the _most recent approved release_ of the Sp
 
 ## Tags (Releases)
 
+[v1.0](tags/v1.0/)
+
 [v1.0.1](tags/v1.0.1/)
-
-[v1.0_as_approved](tags/v1.0_as_approved/)
-
-[v1.0_spec](tags/v1.0_spec/)

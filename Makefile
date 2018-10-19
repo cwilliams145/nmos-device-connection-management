@@ -29,5 +29,5 @@ push:
 clean:
 	./make-clean.sh
 
-real-clean:
-	./make-real-clean.sh
+distclean:
+	./make-distclean.sh
