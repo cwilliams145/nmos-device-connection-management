@@ -1,11 +1,11 @@
 #!/bin/bash
 
-RAML2HTML="$PWD/node_modules/raml2html/bin/raml2html"
-
-if [ ! -x $RAML2HTML ]; then
-    echo "fatal: Cannot find raml2html (maybe need to make build-tools?)"
+if [ ! -d node_modules/.bin ]; then
+    echo "fatal: Cannot find build tools (have you done 'make build-tools?')"
     exit 1
 fi
+
+PATH=$PWD/node_modules/.bin:$PATH
 
 function extract {
     checkout=$1
@@ -24,7 +24,7 @@ function extract {
                 perl -pi.orig -e 's=("\$ref": ")(.*)(\.json)=$1schemas/$2$3=' schemas/*.json
                 for i in *.raml; do
                     echo "Generating HTML from $i..."
-                    $RAML2HTML $i > "${i%%.raml}.html"
+                    raml2html $i > "${i%%.raml}.html"
                 done
                 for i in schemas/*.json.orig; do
                     mv "$i" "${i%%.orig}"
