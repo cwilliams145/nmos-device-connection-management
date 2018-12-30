@@ -2,6 +2,11 @@
 
 ## JSON Schemas
 
+- [connectionapi-base](connectionapi-base.json)
+- [connectionapi-bulk](connectionapi-bulk.json)
+- [connectionapi-receiver](connectionapi-receiver.json)
+- [connectionapi-sender](connectionapi-sender.json)
+- [connectionapi-single](connectionapi-single.json)
 - [error](error.json)
 - [v1.0-activation-response-schema](v1.0-activation-response-schema.json)
 - [v1.0-activation-schema](v1.0-activation-schema.json)

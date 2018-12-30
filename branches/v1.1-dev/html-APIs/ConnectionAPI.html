@@ -166,11 +166,11 @@
       .resource-modal li > ul {
         margin-bottom: 1em;
       }
-    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Connection API documentation <small>version v1.1</small></h1><p>http://example.api.com/x-nmos/connection/{version}</p><ul><li><strong>version</strong>: <em>required (v1.1)</em></li></ul><h3 id="overview"><a href="#overview">Overview</a></h3><p>The Connection API is exposed by NMOS Devices as a standard control interface for management of inter-device connnections.</p><h3 id="endpoint_discovery"><a href="#endpoint_discovery">Endpoint Discovery</a></h3><p>The Connection API URL for an NMOS Device is advertised in the list of controls for that device in the Node API using type: "urn:x-nmos:control:sr-ctrl/v1.0". This information is populated into the NMOS registry via the standard registration mechanism, so it is discoverable through the Query API (see NMOS Discovery and Registration specification).</p><h3 id="api_structure"><a href="#api_structure">API Structure</a></h3><p>The API presents two distinct interfaces. A "bulk" interface for controlling multiple senders/receivers, and a "single" interface to control single devices.</p></div><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">Base</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_"><span class="parent"></span>/</a> <span class="methods"><a href="#_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List of modes available from this API - single and bulk. Both are compulsory parts of the spec.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/</h4></div><div class="modal-body"><div class="alert alert-info"><p>List of modes available from this API - single and bulk. Both are compulsory parts of the spec.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Connection API documentation <small>version v1.1</small></h1><p>http://example.api.com/x-nmos/connection/{version}</p><ul><li><strong>version</strong>: <em>required (v1.1)</em></li></ul><h3 id="overview"><a href="#overview">Overview</a></h3><p>The Connection API is exposed by NMOS Devices as a standard control interface for management of inter-device connnections.</p><h3 id="endpoint_discovery"><a href="#endpoint_discovery">Endpoint Discovery</a></h3><p>The Connection API URL for an NMOS Device is advertised in the list of controls for that device in the Node API using type: "urn:x-nmos:control:sr-ctrl/v1.0". This information is populated into the NMOS registry via the standard registration mechanism, so it is discoverable through the Query API (see NMOS Discovery and Registration specification).</p><h3 id="api_structure"><a href="#api_structure">API Structure</a></h3><p>The API presents two distinct interfaces. A "bulk" interface for controlling multiple senders/receivers, and a "single" interface to control single devices.</p></div><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">Base</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_"><span class="parent"></span>/</a> <span class="methods"><a href="#_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List of modes available from this API - single and bulk. Both are compulsory parts of the spec.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/</h4></div><div class="modal-body"><div class="alert alert-info"><p>List of modes available from this API - single and bulk. Both are compulsory parts of the spec.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "bulk/",
   "single/"
 ]
-</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="bulk" class="panel-title">Bulk control interface</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_bulk"><span class="parent"></span>/bulk</a> <span class="methods"><a href="#bulk_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_bulk" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#bulk_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Senders / receivers options</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="bulk_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/bulk</h4></div><div class="modal-body"><div class="alert alert-info"><p>Senders / receivers options</p></div><ul class="nav nav-tabs"><li class="active"><a href="#bulk_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="bulk_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="bulk" class="panel-title">Bulk control interface</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_bulk"><span class="parent"></span>/bulk</a> <span class="methods"><a href="#bulk_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_bulk" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#bulk_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Senders / receivers options</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="bulk_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/bulk</h4></div><div class="modal-body"><div class="alert alert-info"><p>Senders / receivers options</p></div><ul class="nav nav-tabs"><li class="active"><a href="#bulk_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="bulk_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "senders/",
   "receivers/"
 ]
@@ -193,7 +193,7 @@
         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
       },
       "params": {
-        "$ref": "v1.0-sender-stage-schema.json"
+        "$ref": "sender-stage-schema.json"
       }
     }
   }
@@ -339,7 +339,7 @@
         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
       },
       "params": {
-        "$ref": "v1.0-receiver-stage-schema.json"
+        "$ref": "receiver-stage-schema.json"
       }
     }
   }
@@ -466,7 +466,7 @@
   "error": "Request contained invalid JSON",
   "debug": "&lt;stack trace&gt;"
 }
-</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="single" class="panel-title">Single control interface</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single"><span class="parent"></span>/single</a> <span class="methods"><a href="#single_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/single</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#single_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="single" class="panel-title">Single control interface</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single"><span class="parent"></span>/single</a> <span class="methods"><a href="#single_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/single</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#single_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "senders/",
   "receivers/"
 ]
@@ -475,7 +475,7 @@
   "171d5c80-7fff-4c23-9383-46503eb1c63e/",
   "a2655c48-8a46-4c82-b9bc-98760d59d7f8/"
 ]
-</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid_"><span class="parent">/single/senders</span>/{senderId}</a> <span class="methods"><a href="#single_senders__senderid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List all the API endpoints for a single sender.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders</span>/{senderId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>List all the API endpoints for a single sender.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid_"><span class="parent">/single/senders</span>/{senderId}</a> <span class="methods"><a href="#single_senders__senderid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List all the API endpoints for a single sender.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders</span>/{senderId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>List all the API endpoints for a single sender.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "constraints/",
   "staged/",
   "active/",
@@ -489,7 +489,7 @@
   "maxitems": 2,
   "items": {
     "type": "object",
-    "description": "Contains the constraints for on transport leg",
+    "description": "Contains the constraints for one transport leg",
     "properties": {
       "multicast_ip": {
         "$ref": "#/definitions/constraint"
@@ -844,15 +844,15 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-response-schema.json"
+      "$ref": "activation-response-schema.json"
     },
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_sender_transport_params_rtp.json"
+          "$ref": "sender_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_sender_transport_params_dash.json"
+          "$ref": "sender_transport_params_dash.json"
         }
       ]
     }
@@ -958,15 +958,15 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-schema.json"
+      "$ref": "activation-schema.json"
     },
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_sender_transport_params_rtp.json"
+          "$ref": "sender_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_sender_transport_params_dash.json"
+          "$ref": "sender_transport_params_dash.json"
         }
       ]
     }
@@ -1061,7 +1061,7 @@
     "rtp_enabled": true
   }]
 }
-</code></pre></div></div><div class="tab-pane" id="single_senders__senderid__staged_patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>A 200 response is returned for PATCH requests where no activation has been scheduled, an activation has been cancelled, or an immediate activation has been requested. The response will always contain the full set of parameters in the response schema, and all supported transport parameters. For a request with an immediate activation the API should only return a response once the new transport parameters have been applied to the underlying sender. Note the presence of the extra <code>activation_time</code> parameter in the response. For immediate activation this should be the time the activation actually occurred as an absolute TAI timestamp. If no activation was requested in the PATCH <code>activation_time</code> will be set <code>null</code>. When the <code>master_enable</code> parameter is false senders should not transmit any media streams. For RTP senders the <code>rtp_enable</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div></div><div class="tab-pane" id="single_senders__senderid__staged_patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>A 200 response is returned for PATCH requests where no activation has been scheduled, an activation has been cancelled, or an immediate activation has been requested. The response will always contain the full set of parameters in the response schema, and all supported transport parameters. For a request with an immediate activation the API should only return a response once the new transport parameters have been applied to the underlying sender. Note the presence of the extra <code>activation_time</code> parameter in the response. For immediate activation this should be the time the activation actually occurred as an absolute TAI timestamp. If no activation was requested in the PATCH <code>activation_time</code> will be set <code>null</code>. When the <code>master_enable</code> parameter is false senders should not transmit any media streams. For RTP senders the <code>rtp_enabled</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes a sender",
@@ -1087,15 +1087,15 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-response-schema.json"
+      "$ref": "activation-response-schema.json"
     },
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_sender_transport_params_rtp.json"
+          "$ref": "sender_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_sender_transport_params_dash.json"
+          "$ref": "sender_transport_params_dash.json"
         }
       ]
     }
@@ -1204,15 +1204,15 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-response-schema.json"
+      "$ref": "activation-response-schema.json"
     },
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_sender_transport_params_rtp.json"
+          "$ref": "sender_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_sender_transport_params_dash.json"
+          "$ref": "sender_transport_params_dash.json"
         }
       ]
     }
@@ -1366,15 +1366,15 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-response-schema.json"
+      "$ref": "activation-response-schema.json"
     },
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_sender_transport_params_rtp.json"
+          "$ref": "sender_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_sender_transport_params_dash.json"
+          "$ref": "sender_transport_params_dash.json"
         }
       ]
     }
@@ -1465,7 +1465,7 @@
   "171d5c80-7fff-4c23-9383-46503eb1c63e/",
   "a2655c48-8a46-4c82-b9bc-98760d59d7f8/"
 ]
-</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid_"><span class="parent">/single/receivers</span>/{receiverId}</a> <span class="methods"><a href="#single_receivers__receiverid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List API endpoints</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers</span>/{receiverId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>List API endpoints</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid_"><span class="parent">/single/receivers</span>/{receiverId}</a> <span class="methods"><a href="#single_receivers__receiverid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List API endpoints</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers</span>/{receiverId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>List API endpoints</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "constraints/",
   "staged/",
   "active/"
@@ -1478,7 +1478,7 @@
   "maxitems": 2,
   "items": {
     "type": "object",
-    "description": "Contains the constraints for on transport leg",
+    "description": "Contains the constraints for one transport leg",
     "properties": {
       "multicast_ip": {
         "$ref": "#/definitions/constraint"
@@ -1728,7 +1728,7 @@
   },
   "rtp_enabled": {}
 }]
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__staged"><span class="parent">/single/receivers/{receiverId}</span>/staged</a> <span class="methods"><a href="#single_receivers__receiverid__staged_get"><span class="badge badge_get">get</span></a> <a href="#single_receivers__receiverid__staged_options"><span class="badge badge_options">options</span></a> <a href="#single_receivers__receiverid__staged_patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_single_receivers__receiverid__staged" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__staged_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get staged receiver transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_receivers__receiverid__staged_options'" class="list-group-item"><span class="badge badge_options">options</span><div class="method_description"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_receivers__receiverid__staged_patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Update staged parameters for receiver. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). When a transport file is staged the parameters in that transport file should be propagated to their corresponding transport parameters and the response should show these updated values. On activation the value of the entries in <code>transport_parameters</code> must be used to program the receiver, not those in the transport file directly. However while the transport file is still present (i.e <code>data</code> is not null) media parameters in the transport file should be applied to the RTP receiver. Setting <code>data</code> to null has no impact on the <code>transport_parameters</code> array, or any other property. Where a transport file has been staged the transport parameters in the response will reflect the new values assigned to them by the transport file. The transport parameters should be updated from the transport file in <code>data</code> on every PATCH request that includes the <code>data</code> field. Even if the value of <code>data</code> in the request matches the value of <code>data</code> currently stored in the API the transport parameters are still re-populated. In the case where the transport file and transport parameters are updated in the same PATCH request transport parameters specified in the request object take precedence over those in the transport file. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false receivers should not process any incoming streams, and should unsubscribe from any multicast streams they are receiving. For RTP receivers the <code>rtp_enable</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get staged receiver transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__staged_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Additionally constrained by the constraints at /constraints</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__staged"><span class="parent">/single/receivers/{receiverId}</span>/staged</a> <span class="methods"><a href="#single_receivers__receiverid__staged_get"><span class="badge badge_get">get</span></a> <a href="#single_receivers__receiverid__staged_options"><span class="badge badge_options">options</span></a> <a href="#single_receivers__receiverid__staged_patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_single_receivers__receiverid__staged" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__staged_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get staged receiver transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_receivers__receiverid__staged_options'" class="list-group-item"><span class="badge badge_options">options</span><div class="method_description"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_receivers__receiverid__staged_patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Update staged parameters for receiver. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). When a transport file is staged the parameters in that transport file should be propagated to their corresponding transport parameters and the response should show these updated values. On activation the value of the entries in <code>transport_parameters</code> must be used to program the receiver, not those in the transport file directly. However while the transport file is still present (i.e <code>data</code> is not null) media parameters in the transport file should be applied to the RTP receiver. Setting <code>data</code> to null has no impact on the <code>transport_parameters</code> array, or any other property. Where a transport file has been staged the transport parameters in the response will reflect the new values assigned to them by the transport file. The transport parameters should be updated from the transport file in <code>data</code> on every PATCH request that includes the <code>data</code> field. Even if the value of <code>data</code> in the request matches the value of <code>data</code> currently stored in the API the transport parameters are still re-populated. In the case where the transport file and transport parameters are updated in the same PATCH request transport parameters specified in the request object take precedence over those in the transport file. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false receivers should not process any incoming streams, and should unsubscribe from any multicast streams they are receiving. For RTP receivers the <code>rtp_enabled</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get staged receiver transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__staged_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Additionally constrained by the constraints at /constraints</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes a receiver",
@@ -1755,7 +1755,7 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-response-schema.json"
+      "$ref": "activation-response-schema.json"
     },
     "transport_file": {
       "type": "object",
@@ -1785,10 +1785,10 @@
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_receiver_transport_params_rtp.json"
+          "$ref": "receiver_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_receiver_transport_params_dash.json"
+          "$ref": "receiver_transport_params_dash.json"
         }
       ]
     }
@@ -1906,7 +1906,7 @@
     "rtp_enabled": true
   }]
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_options"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_options">options</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_options_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_options_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_options_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__staged_options_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update staged parameters for receiver. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). When a transport file is staged the parameters in that transport file should be propagated to their corresponding transport parameters and the response should show these updated values. On activation the value of the entries in <code>transport_parameters</code> must be used to program the receiver, not those in the transport file directly. However while the transport file is still present (i.e <code>data</code> is not null) media parameters in the transport file should be applied to the RTP receiver. Setting <code>data</code> to null has no impact on the <code>transport_parameters</code> array, or any other property. Where a transport file has been staged the transport parameters in the response will reflect the new values assigned to them by the transport file. The transport parameters should be updated from the transport file in <code>data</code> on every PATCH request that includes the <code>data</code> field. Even if the value of <code>data</code> in the request matches the value of <code>data</code> currently stored in the API the transport parameters are still re-populated. In the case where the transport file and transport parameters are updated in the same PATCH request transport parameters specified in the request object take precedence over those in the transport file. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false receivers should not process any incoming streams, and should unsubscribe from any multicast streams they are receiving. For RTP receivers the <code>rtp_enable</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_patch_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_patch_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_options"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_options">options</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_options_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_options_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_options_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__staged_options_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update staged parameters for receiver. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). When a transport file is staged the parameters in that transport file should be propagated to their corresponding transport parameters and the response should show these updated values. On activation the value of the entries in <code>transport_parameters</code> must be used to program the receiver, not those in the transport file directly. However while the transport file is still present (i.e <code>data</code> is not null) media parameters in the transport file should be applied to the RTP receiver. Setting <code>data</code> to null has no impact on the <code>transport_parameters</code> array, or any other property. Where a transport file has been staged the transport parameters in the response will reflect the new values assigned to them by the transport file. The transport parameters should be updated from the transport file in <code>data</code> on every PATCH request that includes the <code>data</code> field. Even if the value of <code>data</code> in the request matches the value of <code>data</code> currently stored in the API the transport parameters are still re-populated. In the case where the transport file and transport parameters are updated in the same PATCH request transport parameters specified in the request object take precedence over those in the transport file. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false receivers should not process any incoming streams, and should unsubscribe from any multicast streams they are receiving. For RTP receivers the <code>rtp_enabled</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_patch_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_patch_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes a receiver",
@@ -1926,7 +1926,7 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-schema.json"
+      "$ref": "activation-schema.json"
     },
     "transport_file": {
       "type": "object",
@@ -1952,10 +1952,10 @@
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_receiver_transport_params_rtp.json"
+          "$ref": "receiver_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_receiver_transport_params_dash.json"
+          "$ref": "receiver_transport_params_dash.json"
         }
       ]
     }
@@ -2084,7 +2084,7 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-response-schema.json"
+      "$ref": "activation-response-schema.json"
     },
     "transport_file": {
       "type": "object",
@@ -2114,10 +2114,10 @@
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_receiver_transport_params_rtp.json"
+          "$ref": "receiver_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_receiver_transport_params_dash.json"
+          "$ref": "receiver_transport_params_dash.json"
         }
       ]
     }
@@ -2244,7 +2244,7 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-response-schema.json"
+      "$ref": "activation-response-schema.json"
     },
     "transport_file": {
       "type": "object",
@@ -2274,10 +2274,10 @@
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_receiver_transport_params_rtp.json"
+          "$ref": "receiver_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_receiver_transport_params_dash.json"
+          "$ref": "receiver_transport_params_dash.json"
         }
       ]
     }
@@ -2428,7 +2428,7 @@
       "type": "boolean"
     },
     "activation": {
-      "$ref": "v1.0-activation-response-schema.json"
+      "$ref": "activation-response-schema.json"
     },
     "transport_file": {
       "type": "object",
@@ -2458,10 +2458,10 @@
     "transport_params": {
       "description": "Transport-specific parameters",
       "oneOf": [{
-          "$ref": "v1.0_receiver_transport_params_rtp.json"
+          "$ref": "receiver_transport_params_rtp.json"
         },
         {
-          "$ref": "v1.0_receiver_transport_params_dash.json"
+          "$ref": "receiver_transport_params_dash.json"
         }
       ]
     }

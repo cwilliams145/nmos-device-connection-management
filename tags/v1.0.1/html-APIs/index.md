@@ -2,4 +2,4 @@
 
 # APIs for v1.0.1
 
-- [ConnectionAPI](html-APIs/ConnectionAPI.html)
+- [ConnectionAPI](ConnectionAPI.html)
