@@ -20,8 +20,10 @@ for b_or_t in branches tags; do
         dirname="${dir%%/}"
         echo "Making $dirname/$INDEX"
         cd "$dir"
-            echo -e "# Documentation for $dirname\n" >> "$INDEX"
             if [ -d docs ]; then
+                INDEX_DOCS="docs/$INDEX"
+                echo -e "\n## Documentation for $dirname\n" >> "$INDEX"
+                echo -e "# Documentation for $dirname\n" >> "$INDEX_DOCS"
                 for doc in docs/[1-9]*.md; do
                     no_ext="${doc%%.md}"
                     # Spaces causing problems so rename extracted docs to use underscore
@@ -31,14 +33,16 @@ for b_or_t in branches tags; do
                     # Top level documents have numbers ending in '.0' or '.0.'
                     match_top_level='^docs/[1-9][0-9]*\.0\.? '
                     if [[ "$doc" =~ $match_top_level ]]; then
+                        indent=""
                         linktext="${no_ext#* }"
-                        echo "- [$linktext]($underscore_space_doc)" >> "$INDEX"
                     else
                         # Removing the top-level part of lower-level link texts
                         # that is the part up to the hyphen and following space
-                        linktext="${no_ext#* - }"
-                        echo "  - [$linktext]($underscore_space_doc)" >> "$INDEX"
+                        indent="  "
+                        linktext="${no_ext#* - }" 
                     fi
+                    echo "${indent}- [$linktext](${underscore_space_doc##*/})" >> "$INDEX_DOCS"
+                    echo "${indent}- [$linktext]($underscore_space_doc)" >> "$INDEX"
                 done
             fi
 
@@ -57,7 +61,7 @@ for b_or_t in branches tags; do
             if [ -d html-APIs/schemas ]; then
                 INDEX_SCHEMAS="html-APIs/schemas/$INDEX"
                 echo -e "\n### [JSON Schemas](html-APIs/schemas/)\n" >> "$INDEX"
-                echo -e "## JSON Schemas\n" > "$INDEX_SCHEMAS"
+                echo -e "# JSON Schemas for $dirname\n" > "$INDEX_SCHEMAS"
                 for schema in html-APIs/schemas/*.json; do
                     no_ext="${schema%%.json}"
                     linktext="${no_ext##*/}"
@@ -68,7 +72,7 @@ for b_or_t in branches tags; do
             if [ -d examples ]; then
                 INDEX_EXAMPLES="examples/$INDEX"
                 echo -e "\n### [Examples](examples/)\n" >> "$INDEX"
-                echo -e "## Examples\n" > "$INDEX_EXAMPLES"
+                echo -e "# Examples for $dirname\n" > "$INDEX_EXAMPLES"
                 for example in examples/*.json; do
                     no_ext="${example%%.json}"
                     linktext="${no_ext##*/}"
