@@ -479,7 +479,8 @@
   "constraints/",
   "staged/",
   "active/",
-  "transportfile/"
+  "transportfile/",
+  "transporttype/"
 ]
 </code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested Sender ID does not exist.</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__constraints"><span class="parent">/single/senders/{senderId}</span>/constraints</a> <span class="methods"><a href="#single_senders__senderid__constraints_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__constraints" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__constraints_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the sender does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the sender if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__constraints_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/constraints</h4></div><div class="modal-body"><div class="alert alert-info"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the sender does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the sender if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__constraints_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__constraints_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__constraints_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__constraints_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
@@ -488,129 +489,17 @@
   "title": "Constraints",
   "maxitems": 2,
   "items": {
-    "type": "object",
-    "description": "Contains the constraints for one transport leg",
-    "properties": {
-      "multicast_ip": {
-        "$ref": "#/definitions/constraint"
+    "anyOf":[
+      {
+        "$ref": "constraints-schema-rtp.json"
       },
-      "destination_ip": {
-        "$ref": "#/definitions/constraint"
+      {
+        "$ref": "constraints-schema-websocket.json"
       },
-      "destination_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "source_ip": {
-        "$ref": "#/definitions/constraint"
-      },
-      "interface_ip": {
-        "$ref": "#/definitions/constraint"
-      },
-      "source_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_enabled": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_destination_ip": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_mode": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_type": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_block_width": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_block_height": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec1D_destination_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec2D_destination_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec1D_source_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec2D_source_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtcp_enabled": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtcp_destination_ip": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtcp_destination_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtcp_source_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtp_enabled": {
-        "$ref": "#/definitions/constraint"
+      {
+        "$ref": "constraints-schema-mqtt.json"
       }
-    }
-  },
-  "definitions": {
-    "constraint": {
-      "type": "object",
-      "description": "The constraints for a single transport parameter",
-      "properties": {
-        "maximum": {
-          "description": "The inclusive maximum value the parameter can be set to",
-          "type": [
-            "integer",
-            "number"
-          ]
-        },
-        "minimum": {
-          "description": "The inclusive minimum value the parameter can be set to",
-          "type": [
-            "integer",
-            "number"
-          ]
-        },
-        "enum": {
-          "description": "An array of allowed values",
-          "type": "array",
-          "minItems": 1,
-          "uniqueItems": true,
-          "items": {
-            "anyOf": [{
-                "type": "boolean"
-              },
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              },
-              {
-                "type": "number"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          }
-        },
-        "pattern": {
-          "description": "A regex pattern that must be satisfied for this parameter",
-          "type": "string",
-          "format": "regex"
-        },
-        "description": {
-          "description": "A human readable string describing the constraint (optional)",
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
-    }
+    ]
   }
 }
 </code></pre><p><strong>Examples</strong>:</p><div class="examples"><p><strong>SMPTE2022-7</strong>:<br></p><pre><code>[{
@@ -750,7 +639,7 @@
     "rtp_enabled": {}
   }
 ]
-</code></pre><p><strong>No2022-7</strong>:<br></p><pre><code>[{
+</code></pre><p><strong>RTPNo2022-7</strong>:<br></p><pre><code>[{
   "source_ip": {
     "enum": [
       "192.168.7.2",
@@ -818,7 +707,34 @@
   },
   "rtp_enabled": {}
 }]
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__staged"><span class="parent">/single/senders/{senderId}</span>/staged</a> <span class="methods"><a href="#single_senders__senderid__staged_get"><span class="badge badge_get">get</span></a> <a href="#single_senders__senderid__staged_options"><span class="badge badge_options">options</span></a> <a href="#single_senders__senderid__staged_patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_single_senders__senderid__staged" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__staged_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get staged sender transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false the RTP sender should stop transmitting media and the <code>/transportfile</code> endpoint should return an HTTP 404 response.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_senders__senderid__staged_options'" class="list-group-item"><span class="badge badge_options">options</span><div class="method_description"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_senders__senderid__staged_patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Update staged parameters for sender. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__staged_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get staged sender transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false the RTP sender should stop transmitting media and the <code>/transportfile</code> endpoint should return an HTTP 404 response.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__staged_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__staged_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__staged_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__staged_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Additionally constrained by the constraints at /constraints</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre><p><strong>MQTT</strong>:<br></p><pre><code>[{
+  "destination_host": {},
+  "destination_port": {
+    "enum": [
+      1833,
+      8883
+    ]
+  },
+  "broker_topic": {
+    "enum": [
+      "fixedTopicName1",
+      "fixedTopicName2"
+    ]
+  }
+}]
+</code></pre><p><strong>WebSocketPlusExt</strong>:<br></p><pre><code>[{
+  "connection_uri": {
+    "enum": [
+      "ws://172.29.80.65:5476/websocketServer"
+    ]
+  },
+  "ext_subscription_data": {
+    "enum": [
+      "fixedConnectionParameter"
+    ]
+  }
+}]
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__staged"><span class="parent">/single/senders/{senderId}</span>/staged</a> <span class="methods"><a href="#single_senders__senderid__staged_get"><span class="badge badge_get">get</span></a> <a href="#single_senders__senderid__staged_options"><span class="badge badge_options">options</span></a> <a href="#single_senders__senderid__staged_patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_single_senders__senderid__staged" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__staged_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get staged sender transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false the sender should stop transmitting media and the <code>/transportfile</code> endpoint should return an HTTP 404 response.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_senders__senderid__staged_options'" class="list-group-item"><span class="badge badge_options">options</span><div class="method_description"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_senders__senderid__staged_patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Update staged parameters for sender. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__staged_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get staged sender transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false the sender should stop transmitting media and the <code>/transportfile</code> endpoint should return an HTTP 404 response.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__staged_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__staged_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__staged_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__staged_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Additionally constrained by the constraints at /constraints</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes a sender",
@@ -848,11 +764,17 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "sender_transport_params_rtp.json"
         },
         {
           "$ref": "sender_transport_params_dash.json"
+        },
+        {
+          "$ref": "sender_transport_params_websocket.json"
+        },
+        {
+          "$ref": "sender_transport_params_mqtt.json"
         }
       ]
     }
@@ -962,11 +884,17 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "sender_transport_params_rtp.json"
         },
         {
           "$ref": "sender_transport_params_dash.json"
+        },
+        {
+          "$ref": "sender_transport_params_websocket.json"
+        },
+        {
+          "$ref": "sender_transport_params_mqtt.json"
         }
       ]
     }
@@ -1091,11 +1019,17 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "sender_transport_params_rtp.json"
         },
         {
           "$ref": "sender_transport_params_dash.json"
+        },
+        {
+          "$ref": "sender_transport_params_websocket.json"
+        },
+        {
+          "$ref": "sender_transport_params_mqtt.json"
         }
       ]
     }
@@ -1208,11 +1142,17 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "sender_transport_params_rtp.json"
         },
         {
           "$ref": "sender_transport_params_dash.json"
+        },
+        {
+          "$ref": "sender_transport_params_websocket.json"
+        },
+        {
+          "$ref": "sender_transport_params_mqtt.json"
         }
       ]
     }
@@ -1220,7 +1160,7 @@
 }
 </code></pre><p><strong>Examples</strong>:</p><div class="examples"><p><strong>relative-scheduled-activation</strong>:<br></p><pre><code>{
   "master_enable": true,
-  "receiver_id": "",
+  "receiver_id": null,
   "activation": {
     "mode": "activate_scheduled_relative",
     "requested_time": "2:0",
@@ -1370,17 +1310,23 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "sender_transport_params_rtp.json"
         },
         {
           "$ref": "sender_transport_params_dash.json"
+        },
+        {
+          "$ref": "sender_transport_params_websocket.json"
+        },
+        {
+          "$ref": "sender_transport_params_mqtt.json"
         }
       ]
     }
   }
 }
-</code></pre><p><strong>Examples</strong>:</p><div class="examples"><p><strong>Normal</strong>:<br></p><pre><code>{
+</code></pre><p><strong>Examples</strong>:</p><div class="examples"><p><strong>NormalRTP</strong>:<br></p><pre><code>{
   "receiver_id": "0a174530-e3cf-11e6-bf01-fe55135034f3",
   "master_enable": true,
   "activation": {
@@ -1430,6 +1376,20 @@
     "rtp_enabled": true
   }]
 }
+</code></pre><p><strong>NormalMQTT</strong>:<br></p><pre><code>{
+  "receiver_id": "69744dfb-0557-4202-b1f1-4d1a741ee2bb",
+  "master_enable": true,
+  "activation": {
+    "mode": "activate_immediate",
+    "requested_time": "1541508905:0",
+    "activation_time": "1541508905:0"
+  },
+  "transport_params": [{
+    "destination_host": "broker.mydomain.com",
+    "destination_port": 1883,
+    "broker_topic": "my_topic_name"
+  }]
+}
 </code></pre><p><strong>Uninitialised</strong>:<br></p><pre><code>{
   "receiver_id": null,
   "master_enable": true,
@@ -1460,7 +1420,24 @@
     "rtp_enabled": false
   }]
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__transportfile"><span class="parent">/single/senders/{senderId}</span>/transportfile</a> <span class="methods"><a href="#single_senders__senderid__transportfile_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__transportfile" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__transportfile_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Redirects to the location of the sender&#39;s transport file or returns the transport file directly. Check HTTP response code to determine which mode of operation is in use. When returning the transport file directly ensure that the <code>Content-Type</code> entity header is correctly set.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__transportfile_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/transportfile</h4></div><div class="modal-body"><div class="alert alert-info"><p>Redirects to the location of the sender&#39;s transport file or returns the transport file directly. Check HTTP response code to determine which mode of operation is in use. When returning the transport file directly ensure that the <code>Content-Type</code> entity header is correctly set.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__transportfile_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__transportfile_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__transportfile_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__transportfile_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The transport file itself will be served</p><h2>HTTP status code <a href="http://httpstatus.es/307" target="_blank">307</a></h2><p>A temporary redirect to the transport file</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers"><span class="parent">/single</span>/receivers</a> <span class="methods"><a href="#single_receivers_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List available receivers. All UUIDs are appended with / to indicate the ID forms part of the URL for the next layer down.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single</span>/receivers</h4></div><div class="modal-body"><div class="alert alert-info"><p>List available receivers. All UUIDs are appended with / to indicate the ID forms part of the URL for the next layer down.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__transportfile"><span class="parent">/single/senders/{senderId}</span>/transportfile</a> <span class="methods"><a href="#single_senders__senderid__transportfile_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__transportfile" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__transportfile_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Redirects to the location of the sender&#39;s transport file or returns the transport file directly. Check HTTP response code to determine which mode of operation is in use. When returning the transport file directly ensure that the <code>Content-Type</code> entity header is correctly set.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__transportfile_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/transportfile</h4></div><div class="modal-body"><div class="alert alert-info"><p>Redirects to the location of the sender&#39;s transport file or returns the transport file directly. Check HTTP response code to determine which mode of operation is in use. When returning the transport file directly ensure that the <code>Content-Type</code> entity header is correctly set.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__transportfile_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__transportfile_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__transportfile_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__transportfile_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The transport file itself will be served</p><h2>HTTP status code <a href="http://httpstatus.es/307" target="_blank">307</a></h2><p>A temporary redirect to the transport file</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__transporttype"><span class="parent">/single/senders/{senderId}</span>/transporttype</a> <span class="methods"><a href="#single_senders__senderid__transporttype_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__transporttype" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__transporttype_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Returns the URN for the transport type employed by this sender.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__transporttype_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/transporttype</h4></div><div class="modal-body"><div class="alert alert-info"><p>Returns the URN for the transport type employed by this sender.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__transporttype_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__transporttype_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__transporttype_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__transporttype_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Transport Type",
+    "description": "Transport type used by the Sender or Receiver in URN format",
+    "type": "string",
+    "oneOf": [
+      {
+        "enum": [
+          "urn:x-nmos:transport:rtp",
+          "urn:x-nmos:transport:dash",
+          "urn:x-nmos:transport:websocket",
+          "urn:x-nmos:transport:mqtt"
+        ]
+      }
+    ],
+    "format": "uri"
+}
+</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>"urn:x-nmos:transport:mqtt"</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers"><span class="parent">/single</span>/receivers</a> <span class="methods"><a href="#single_receivers_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List available receivers. All UUIDs are appended with / to indicate the ID forms part of the URL for the next layer down.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single</span>/receivers</h4></div><div class="modal-body"><div class="alert alert-info"><p>List available receivers. All UUIDs are appended with / to indicate the ID forms part of the URL for the next layer down.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "c72cca5b-01db-47aa-bb00-03893defbfae/",
   "171d5c80-7fff-4c23-9383-46503eb1c63e/",
   "a2655c48-8a46-4c82-b9bc-98760d59d7f8/"
@@ -1468,7 +1445,8 @@
 </code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid_"><span class="parent">/single/receivers</span>/{receiverId}</a> <span class="methods"><a href="#single_receivers__receiverid__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List API endpoints</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers</span>/{receiverId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>List API endpoints</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "constraints/",
   "staged/",
-  "active/"
+  "active/",
+  "transporttype/"
 ]
 </code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__constraints"><span class="parent">/single/receivers/{receiverId}</span>/constraints</a> <span class="methods"><a href="#single_receivers__receiverid__constraints_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid__constraints" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__constraints_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the receiver does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the receiver if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__constraints_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/constraints</h4></div><div class="modal-body"><div class="alert alert-info"><p>Lists the constraints for each transport parameter (e.g max/min value, enumerated values etc.) using a very limited subset of JSON schema. Every transport parameter in the staged resource must be represented here. Any minimum/maximum constraints listed here must not allow a wider range of values than those allowed by the core schema. Any enum defined on this endpoint must only contain a subset of the values allowed for that parameter in the core schema. Similarly, pattern constraints must only narrow the allowed values. If the receiver does not constrain parameters beyond what is specified in the core schema then the constraints in the core schema should not be duplicated on this endpoint. Where an "auto" mode is allowed in the core schema this mode must always be supported by the receiver if the parameter is exposed. If SMPTE 2022-7 is in use, two entries are in the outer array of the resource. The first entry is the constraints for the primary leg. If SMPTE 2022-7 is not in use only one entry should be present in the outer array.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__constraints_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__constraints_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__constraints_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__constraints_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
@@ -1477,129 +1455,17 @@
   "title": "Constraints",
   "maxitems": 2,
   "items": {
-    "type": "object",
-    "description": "Contains the constraints for one transport leg",
-    "properties": {
-      "multicast_ip": {
-        "$ref": "#/definitions/constraint"
+    "anyOf":[
+      {
+        "$ref": "constraints-schema-rtp.json"
       },
-      "destination_ip": {
-        "$ref": "#/definitions/constraint"
+      {
+        "$ref": "constraints-schema-websocket.json"
       },
-      "destination_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "source_ip": {
-        "$ref": "#/definitions/constraint"
-      },
-      "interface_ip": {
-        "$ref": "#/definitions/constraint"
-      },
-      "source_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_enabled": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_destination_ip": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_mode": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_type": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_block_width": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec_block_height": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec1D_destination_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec2D_destination_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec1D_source_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "fec2D_source_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtcp_enabled": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtcp_destination_ip": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtcp_destination_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtcp_source_port": {
-        "$ref": "#/definitions/constraint"
-      },
-      "rtp_enabled": {
-        "$ref": "#/definitions/constraint"
+      {
+        "$ref": "constraints-schema-mqtt.json"
       }
-    }
-  },
-  "definitions": {
-    "constraint": {
-      "type": "object",
-      "description": "The constraints for a single transport parameter",
-      "properties": {
-        "maximum": {
-          "description": "The inclusive maximum value the parameter can be set to",
-          "type": [
-            "integer",
-            "number"
-          ]
-        },
-        "minimum": {
-          "description": "The inclusive minimum value the parameter can be set to",
-          "type": [
-            "integer",
-            "number"
-          ]
-        },
-        "enum": {
-          "description": "An array of allowed values",
-          "type": "array",
-          "minItems": 1,
-          "uniqueItems": true,
-          "items": {
-            "anyOf": [{
-                "type": "boolean"
-              },
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              },
-              {
-                "type": "number"
-              },
-              {
-                "type": "string"
-              }
-            ]
-          }
-        },
-        "pattern": {
-          "description": "A regex pattern that must be satisfied for this parameter",
-          "type": "string",
-          "format": "regex"
-        },
-        "description": {
-          "description": "A human readable string describing the constraint (optional)",
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
-    }
+    ]
   }
 }
 </code></pre><p><strong>Examples</strong>:</p><div class="examples"><p><strong>SMPTE2022-7</strong>:<br></p><pre><code>[{
@@ -1689,7 +1555,7 @@
     "rtp_enabled": {}
   }
 ]
-</code></pre><p><strong>No2022-7</strong>:<br></p><pre><code>[{
+</code></pre><p><strong>RTPNo2022-7</strong>:<br></p><pre><code>[{
   "source_ip": {},
   "multicast_ip": {},
   "interface_ip": {
@@ -1728,7 +1594,25 @@
   },
   "rtp_enabled": {}
 }]
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__staged"><span class="parent">/single/receivers/{receiverId}</span>/staged</a> <span class="methods"><a href="#single_receivers__receiverid__staged_get"><span class="badge badge_get">get</span></a> <a href="#single_receivers__receiverid__staged_options"><span class="badge badge_options">options</span></a> <a href="#single_receivers__receiverid__staged_patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_single_receivers__receiverid__staged" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__staged_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get staged receiver transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_receivers__receiverid__staged_options'" class="list-group-item"><span class="badge badge_options">options</span><div class="method_description"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_receivers__receiverid__staged_patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Update staged parameters for receiver. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). When a transport file is staged the parameters in that transport file should be propagated to their corresponding transport parameters and the response should show these updated values. On activation the value of the entries in <code>transport_parameters</code> must be used to program the receiver, not those in the transport file directly. However while the transport file is still present (i.e <code>data</code> is not null) media parameters in the transport file should be applied to the RTP receiver. Setting <code>data</code> to null has no impact on the <code>transport_parameters</code> array, or any other property. Where a transport file has been staged the transport parameters in the response will reflect the new values assigned to them by the transport file. The transport parameters should be updated from the transport file in <code>data</code> on every PATCH request that includes the <code>data</code> field. Even if the value of <code>data</code> in the request matches the value of <code>data</code> currently stored in the API the transport parameters are still re-populated. In the case where the transport file and transport parameters are updated in the same PATCH request transport parameters specified in the request object take precedence over those in the transport file. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false receivers should not process any incoming streams, and should unsubscribe from any multicast streams they are receiving. For RTP receivers the <code>rtp_enabled</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get staged receiver transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__staged_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Additionally constrained by the constraints at /constraints</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre><p><strong>MQTT</strong>:<br></p><pre><code>[{
+  "source_host": {},
+  "source_port": {
+    "enum": [
+      1833,
+      8883
+    ]
+  },
+  "broker_topic": {}
+}]
+</code></pre><p><strong>WebSocketPlusExt</strong>:<br></p><pre><code>[{
+  "connection_uri": {},
+  "ext_subscription_data": {},
+  "ext_retry_timeout": {
+    "maximum": 60,
+    "minimum": 5
+  }
+}]
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__staged"><span class="parent">/single/receivers/{receiverId}</span>/staged</a> <span class="methods"><a href="#single_receivers__receiverid__staged_get"><span class="badge badge_get">get</span></a> <a href="#single_receivers__receiverid__staged_options"><span class="badge badge_options">options</span></a> <a href="#single_receivers__receiverid__staged_patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_single_receivers__receiverid__staged" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__staged_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get staged receiver transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_receivers__receiverid__staged_options'" class="list-group-item"><span class="badge badge_options">options</span><div class="method_description"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#single_receivers__receiverid__staged_patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"><p>Update staged parameters for receiver. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). When a transport file is staged the parameters in that transport file should be propagated to their corresponding transport parameters and the response should show these updated values. On activation the value of the entries in <code>transport_parameters</code> must be used to program the receiver, not those in the transport file directly. However while the transport file is still present (i.e <code>data</code> is not null) media parameters in the transport file should be applied to the receiver. Setting <code>data</code> to null has no impact on the <code>transport_parameters</code> array, or any other property. Where a transport file has been staged the transport parameters in the response will reflect the new values assigned to them by the transport file. The transport parameters should be updated from the transport file in <code>data</code> on every PATCH request that includes the <code>data</code> field. Even if the value of <code>data</code> in the request matches the value of <code>data</code> currently stored in the API the transport parameters are still re-populated. In the case where the transport file and transport parameters are updated in the same PATCH request transport parameters specified in the request object take precedence over those in the transport file. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false receivers should not process any incoming streams, and should unsubscribe from any multicast streams they are receiving. For RTP receivers the <code>rtp_enabled</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get staged receiver transport parameters object. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__staged_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Additionally constrained by the constraints at /constraints</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes a receiver",
@@ -1784,11 +1668,17 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "receiver_transport_params_rtp.json"
         },
         {
           "$ref": "receiver_transport_params_dash.json"
+        },
+        {
+          "$ref": "receiver_transport_params_websocket.json"
+        },
+        {
+          "$ref": "receiver_transport_params_mqtt.json"
         }
       ]
     }
@@ -1906,7 +1796,7 @@
     "rtp_enabled": true
   }]
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_options"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_options">options</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_options_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_options_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_options_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__staged_options_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update staged parameters for receiver. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). When a transport file is staged the parameters in that transport file should be propagated to their corresponding transport parameters and the response should show these updated values. On activation the value of the entries in <code>transport_parameters</code> must be used to program the receiver, not those in the transport file directly. However while the transport file is still present (i.e <code>data</code> is not null) media parameters in the transport file should be applied to the RTP receiver. Setting <code>data</code> to null has no impact on the <code>transport_parameters</code> array, or any other property. Where a transport file has been staged the transport parameters in the response will reflect the new values assigned to them by the transport file. The transport parameters should be updated from the transport file in <code>data</code> on every PATCH request that includes the <code>data</code> field. Even if the value of <code>data</code> in the request matches the value of <code>data</code> currently stored in the API the transport parameters are still re-populated. In the case where the transport file and transport parameters are updated in the same PATCH request transport parameters specified in the request object take precedence over those in the transport file. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false receivers should not process any incoming streams, and should unsubscribe from any multicast streams they are receiving. For RTP receivers the <code>rtp_enabled</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_patch_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_patch_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_options"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_options">options</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_options_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_options_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_options_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__staged_options_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__staged_patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/single/receivers/{receiverId}</span>/staged</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update staged parameters for receiver. Note that for activations the <code>mode</code> parameter will return to null once the activation transaction with the client is completed (i.e the response to the PATCH has been sent by the server). When a transport file is staged the parameters in that transport file should be propagated to their corresponding transport parameters and the response should show these updated values. On activation the value of the entries in <code>transport_parameters</code> must be used to program the receiver, not those in the transport file directly. However while the transport file is still present (i.e <code>data</code> is not null) media parameters in the transport file should be applied to the receiver. Setting <code>data</code> to null has no impact on the <code>transport_parameters</code> array, or any other property. Where a transport file has been staged the transport parameters in the response will reflect the new values assigned to them by the transport file. The transport parameters should be updated from the transport file in <code>data</code> on every PATCH request that includes the <code>data</code> field. Even if the value of <code>data</code> in the request matches the value of <code>data</code> currently stored in the API the transport parameters are still re-populated. In the case where the transport file and transport parameters are updated in the same PATCH request transport parameters specified in the request object take precedence over those in the transport file. In SMPTE 2022-7 operation element 0 of the <code>transport_params</code> array shall be the parameters applied to the primary leg, and element 1 the secondary leg. There shall only be one element present in <code>transport_params</code> when SMPTE 2022-7 is not in use. When the <code>master_enable</code> parameter is false receivers should not process any incoming streams, and should unsubscribe from any multicast streams they are receiving. For RTP receivers the <code>rtp_enabled</code> parameter allows for the individual disabling of SMPTE 2022-7 legs.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__staged_patch_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__staged_patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__staged_patch_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes a receiver",
@@ -1951,11 +1841,17 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "receiver_transport_params_rtp.json"
         },
         {
           "$ref": "receiver_transport_params_dash.json"
+        },
+        {
+          "$ref": "receiver_transport_params_websocket.json"
+        },
+        {
+          "$ref": "receiver_transport_params_mqtt.json"
         }
       ]
     }
@@ -2113,11 +2009,17 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "receiver_transport_params_rtp.json"
         },
         {
           "$ref": "receiver_transport_params_dash.json"
+        },
+        {
+          "$ref": "receiver_transport_params_websocket.json"
+        },
+        {
+          "$ref": "receiver_transport_params_mqtt.json"
         }
       ]
     }
@@ -2273,11 +2175,17 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "receiver_transport_params_rtp.json"
         },
         {
           "$ref": "receiver_transport_params_dash.json"
+        },
+        {
+          "$ref": "receiver_transport_params_websocket.json"
+        },
+        {
+          "$ref": "receiver_transport_params_mqtt.json"
         }
       ]
     }
@@ -2457,17 +2365,23 @@
     },
     "transport_params": {
       "description": "Transport-specific parameters",
-      "oneOf": [{
+      "anyOf": [{
           "$ref": "receiver_transport_params_rtp.json"
         },
         {
           "$ref": "receiver_transport_params_dash.json"
+        },
+        {
+          "$ref": "receiver_transport_params_websocket.json"
+        },
+        {
+          "$ref": "receiver_transport_params_mqtt.json"
         }
       ]
     }
   }
 }
-</code></pre><p><strong>Examples</strong>:</p><div class="examples"><p><strong>running-state</strong>:<br></p><pre><code>{
+</code></pre><p><strong>Examples</strong>:</p><div class="examples"><p><strong>NormalRTP</strong>:<br></p><pre><code>{
   "sender_id": "5709255c-c0ae-4e1e-99a0-e872e83e48e0",
   "master_enable": true,
   "activation": {
@@ -2492,6 +2406,24 @@
     "rtcp_destination_ip": "232.250.98.80",
     "rtcp_destination_port": 5001,
     "rtp_enabled": true
+  }]
+}
+</code></pre><p><strong>NormalMQTT</strong>:<br></p><pre><code>{
+  "sender_id": "eae33112-b56c-4a36-8b68-05ab5b6268bc",
+  "master_enable": true,
+  "activation": {
+    "mode": "activate_immediate",
+    "requested_time": "1541508905:0",
+    "activation_time": "1541508905:263900"
+  },
+  "transport_file": {
+    "data": null,
+    "type": null
+  },
+  "transport_params": [{
+    "source_host": "broker.mydomain.com",
+    "source_port": 1883,
+    "broker_topic": "my_topic_name"
   }]
 }
 </code></pre><p><strong>Uninitialised</strong>:<br></p><pre><code>{
@@ -2521,4 +2453,21 @@
     "rtp_enabled": true
   }]
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#">Base</a></li><li><a href="#bulk">Bulk control interface</a></li><li><a href="#single">Single control interface</a></li></ul></div></div></div></div></body></html>
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__transporttype"><span class="parent">/single/receivers/{receiverId}</span>/transporttype</a> <span class="methods"><a href="#single_receivers__receiverid__transporttype_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid__transporttype" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__transporttype_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Returns the URN for the transport type employed by this receiver.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__transporttype_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/transporttype</h4></div><div class="modal-body"><div class="alert alert-info"><p>Returns the URN for the transport type employed by this receiver.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__transporttype_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__transporttype_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__transporttype_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__transporttype_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Transport Type",
+    "description": "Transport type used by the Sender or Receiver in URN format",
+    "type": "string",
+    "oneOf": [
+      {
+        "enum": [
+          "urn:x-nmos:transport:rtp",
+          "urn:x-nmos:transport:dash",
+          "urn:x-nmos:transport:websocket",
+          "urn:x-nmos:transport:mqtt"
+        ]
+      }
+    ],
+    "format": "uri"
+}
+</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>"urn:x-nmos:transport:mqtt"</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the resource does not exist</p></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#">Base</a></li><li><a href="#bulk">Bulk control interface</a></li><li><a href="#single">Single control interface</a></li></ul></div></div></div></div></body></html>

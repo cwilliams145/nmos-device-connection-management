@@ -11,4 +11,6 @@
   - [Non-NMOS Devices](3.2._Interoperability_-_Non-NMOS_Devices.md)
 - [Behaviour](4.0._Behaviour.md)
   - [RTP Transport Type](4.1._Behaviour_-_RTP_Transport_Type.md)
+  - [MQTT Transport Type](4.2._Behaviour_-_MQTT_Transport_Type.md)
+  - [WebSocket Transport Type](4.3._Behaviour_-_WebSocket_Transport_Type.md)
 - [Upgrade Path](5.0._Upgrade_Path.md)
