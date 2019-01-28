@@ -8,6 +8,7 @@
 - [connectionapi-sender](connectionapi-sender.json)
 - [connectionapi-single](connectionapi-single.json)
 - [error](error.json)
+- [sender-receiver-base](sender-receiver-base.json)
 - [v1.0-activation-response-schema](v1.0-activation-response-schema.json)
 - [v1.0-activation-schema](v1.0-activation-schema.json)
 - [v1.0-bulk-receiver-post-schema](v1.0-bulk-receiver-post-schema.json)

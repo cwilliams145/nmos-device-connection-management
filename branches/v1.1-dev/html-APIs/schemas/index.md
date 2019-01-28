@@ -25,6 +25,7 @@
 - [receiver_transport_params_mqtt](receiver_transport_params_mqtt.json)
 - [receiver_transport_params_rtp](receiver_transport_params_rtp.json)
 - [receiver_transport_params_websocket](receiver_transport_params_websocket.json)
+- [sender-receiver-base](sender-receiver-base.json)
 - [sender-response-schema](sender-response-schema.json)
 - [sender-stage-schema](sender-stage-schema.json)
 - [sender_transport_params_dash](sender_transport_params_dash.json)
