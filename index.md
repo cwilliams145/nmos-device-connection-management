@@ -38,6 +38,8 @@ The documenation and API links immediately below, and the links in the page head
 
 ## Branches
 
+[v1.0.1-cmp](branches/v1.0.1-cmp/)
+
 [v1.0.x](branches/v1.0.x/)
 
 [v1.1-dev](branches/v1.1-dev/)

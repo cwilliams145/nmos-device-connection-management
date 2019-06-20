@@ -567,7 +567,6 @@ pre code {
   "type": "array",
   "description": "Used to express the dynamic constraints on transport parameters. These constraints may be set and changed at run time. Parameters must also conform with constraints inferred from the specification. Every transport parameter must have an entry, even if it is only an empty object.",
   "title": "Constraints",
-  "maxitems": 2,
   "items": {
     "type": "object",
     "description": "Contains the constraints for one transport leg",
@@ -1042,7 +1041,7 @@ pre code {
       "$ref": "v1.0-activation-schema.json"
     },
     "transport_params": {
-      "description": "Transport-specific parameters",
+      "description": "Transport-specific parameters. If this parameter is included in a client request it must include the same number of array elements (or &#39;legs&#39;) as specified in the constraints. If no changes are required to a specific leg it must be included as an empty object ({}).",
       "oneOf": [{
           "$ref": "v1.0_sender_transport_params_rtp.json"
         },
@@ -1389,7 +1388,7 @@ pre code {
   "error": "`source_ip` must be a valid IPv4 or IPv6 address",
   "debug": null
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p><h2>HTTP status code <a href="http://httpstatus.es/423" target="_blank">423</a></h2><p>Returned when the resource is locked because an activation has been scheduled. A resource may be unlocked by setting <code>mode</code> in <code>activation</code> to <code>null</code>, which will cancel the pending activation. This may be done in the same request as a change to other parameters.</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A 500 response may be returned if the transport file could not be parsed, or there is some failure caused by activation which was not caused by a violation or schema or constraints.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p><h2>HTTP status code <a href="http://httpstatus.es/423" target="_blank">423</a></h2><p>Returned when the resource is locked because an activation has been scheduled. A resource may be unlocked by setting <code>mode</code> in <code>activation</code> to <code>null</code>, which will cancel the pending activation. This may be done in the same request as a change to other parameters.</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A 500 response may be returned if the transport file could not be parsed, or there is some failure caused by activation which was not caused by a violation of schema or constraints.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes the standard error response which is returned with HTTP codes 400 and above",
@@ -1584,7 +1583,6 @@ pre code {
   "type": "array",
   "description": "Used to express the dynamic constraints on transport parameters. These constraints may be set and changed at run time. Parameters must also conform with constraints inferred from the specification. Every transport parameter must have an entry, even if it is only an empty object.",
   "title": "Constraints",
-  "maxitems": 2,
   "items": {
     "type": "object",
     "description": "Contains the constraints for one transport leg",
@@ -1868,7 +1866,7 @@ pre code {
     },
     "transport_file": {
       "type": "object",
-      "description": "Transport file parameters",
+      "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
       "additionalProperties": false,
       "required": [
         "data",
@@ -2039,7 +2037,7 @@ pre code {
     },
     "transport_file": {
       "type": "object",
-      "description": "Transport file parameters",
+      "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
       "additionalProperties": false,
       "properties": {
         "data": {
@@ -2059,7 +2057,7 @@ pre code {
       }
     },
     "transport_params": {
-      "description": "Transport-specific parameters",
+      "description": "Transport-specific parameters. If this parameter is included in a client request it must include the same number of array elements (or &#39;legs&#39;) as specified in the constraints. If no changes are required to a specific leg it must be included as an empty object ({}).",
       "oneOf": [{
           "$ref": "v1.0_receiver_transport_params_rtp.json"
         },
@@ -2197,7 +2195,7 @@ pre code {
     },
     "transport_file": {
       "type": "object",
-      "description": "Transport file parameters",
+      "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
       "additionalProperties": false,
       "required": [
         "data",
@@ -2357,7 +2355,7 @@ pre code {
     },
     "transport_file": {
       "type": "object",
-      "description": "Transport file parameters",
+      "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
       "additionalProperties": false,
       "required": [
         "data",
@@ -2478,7 +2476,7 @@ pre code {
   "error": "`source_ip` must be a valid IPv4 or IPv6 address",
   "debug": null
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p><h2>HTTP status code <a href="http://httpstatus.es/423" target="_blank">423</a></h2><p>Returned when the resource is locked because an activation has been scheduled. A resource may be unlocked by setting <code>mode</code> in <code>activation</code> to <code>null</code>, which will cancel the pending activation. This may be done in the same request as a change to other parameters.</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A 500 response may be returned if the transport file could not be parsed, or there is some failure caused by activation which was not caused by a violation or schema or constraints.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p><h2>HTTP status code <a href="http://httpstatus.es/423" target="_blank">423</a></h2><p>Returned when the resource is locked because an activation has been scheduled. A resource may be unlocked by setting <code>mode</code> in <code>activation</code> to <code>null</code>, which will cancel the pending activation. This may be done in the same request as a change to other parameters.</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A 500 response may be returned if the transport file could not be parsed, or there is some failure caused by activation which was not caused by a violation of schema or constraints.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes the standard error response which is returned with HTTP codes 400 and above",
@@ -2541,7 +2539,7 @@ pre code {
     },
     "transport_file": {
       "type": "object",
-      "description": "Transport file parameters",
+      "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
       "additionalProperties": false,
       "required": [
         "data",

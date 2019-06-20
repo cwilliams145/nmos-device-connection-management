@@ -569,7 +569,6 @@ pre code {
   "type": "array",
   "description": "Used to express the dynamic constraints on transport parameters. These constraints may be set and changed at run time. Parameters must also conform with constraints inferred from the specification. Every transport parameter must have an entry, even if it is only an empty object.",
   "title": "Constraints",
-  "maxitems": 2,
   "items": {
     "anyOf":[
       {
@@ -802,12 +801,24 @@ pre code {
       "fixedTopicName1",
       "fixedTopicName2"
     ]
+  },
+  "broker_protocol": {},
+  "broker_authorization": {},
+  "connection_status_broker_topic": {
+    "enum": [
+      "connStatusTopic"
+    ]
   }
 }]
 </code></pre><p><strong>WebSocketPlusExt</strong>:<br></p><pre><code>[{
   "connection_uri": {
     "enum": [
       "ws://172.29.80.65:5476/websocketServer"
+    ]
+  },
+  "connection_authorization": {
+    "enum": [
+      false
     ]
   },
   "ext_subscription_data": {
@@ -965,7 +976,7 @@ pre code {
       "$ref": "activation-schema.json"
     },
     "transport_params": {
-      "description": "Transport-specific parameters",
+      "description": "Transport-specific parameters. If this parameter is included in a client request it must include the same number of array elements (or &#39;legs&#39;) as specified in the constraints. If no changes are required to a specific leg it must be included as an empty object ({}).",
       "anyOf": [{
           "$ref": "sender_transport_params_rtp.json"
         },
@@ -1330,7 +1341,7 @@ pre code {
   "error": "`source_ip` must be a valid IPv4 or IPv6 address",
   "debug": null
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p><h2>HTTP status code <a href="http://httpstatus.es/423" target="_blank">423</a></h2><p>Returned when the resource is locked because an activation has been scheduled. A resource may be unlocked by setting <code>mode</code> in <code>activation</code> to <code>null</code>, which will cancel the pending activation. This may be done in the same request as a change to other parameters.</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A 500 response may be returned if the transport file could not be parsed, or there is some failure caused by activation which was not caused by a violation or schema or constraints.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p><h2>HTTP status code <a href="http://httpstatus.es/423" target="_blank">423</a></h2><p>Returned when the resource is locked because an activation has been scheduled. A resource may be unlocked by setting <code>mode</code> in <code>activation</code> to <code>null</code>, which will cancel the pending activation. This may be done in the same request as a change to other parameters.</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A 500 response may be returned if the transport file could not be parsed, or there is some failure caused by activation which was not caused by a violation of schema or constraints.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes the standard error response which is returned with HTTP codes 400 and above",
@@ -1469,7 +1480,10 @@ pre code {
   "transport_params": [{
     "destination_host": "broker.mydomain.com",
     "destination_port": 1883,
-    "broker_topic": "my_topic_name"
+    "broker_topic": "my_topic_name",
+    "broker_protocol": "mqtt",
+    "broker_authorization": false,
+    "connection_status_broker_topic": "my_status_topic_name"
   }]
 }
 </code></pre><p><strong>Uninitialised</strong>:<br></p><pre><code>{
@@ -1502,22 +1516,22 @@ pre code {
     "rtp_enabled": false
   }]
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__transportfile"><span class="parent">/single/senders/{senderId}</span>/transportfile</a> <span class="methods"><a href="#single_senders__senderid__transportfile_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__transportfile" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__transportfile_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Redirects to the location of the sender&#39;s transport file or returns the transport file directly. Check HTTP response code to determine which mode of operation is in use. When returning the transport file directly ensure that the <code>Content-Type</code> entity header is correctly set.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__transportfile_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/transportfile</h4></div><div class="modal-body"><div class="alert alert-info"><p>Redirects to the location of the sender&#39;s transport file or returns the transport file directly. Check HTTP response code to determine which mode of operation is in use. When returning the transport file directly ensure that the <code>Content-Type</code> entity header is correctly set.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__transportfile_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__transportfile_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__transportfile_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__transportfile_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The transport file itself will be served</p><h2>HTTP status code <a href="http://httpstatus.es/307" target="_blank">307</a></h2><p>A temporary redirect to the transport file</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__transporttype"><span class="parent">/single/senders/{senderId}</span>/transporttype</a> <span class="methods"><a href="#single_senders__senderid__transporttype_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__transporttype" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__transporttype_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Returns the URN for the transport type employed by this sender.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__transporttype_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/transporttype</h4></div><div class="modal-body"><div class="alert alert-info"><p>Returns the URN for the transport type employed by this sender.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__transporttype_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__transporttype_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__transporttype_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__transporttype_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Transport Type",
-    "description": "Transport type used by the Sender or Receiver in URN format",
-    "type": "string",
-    "oneOf": [
-      {
-        "enum": [
-          "urn:x-nmos:transport:rtp",
-          "urn:x-nmos:transport:dash",
-          "urn:x-nmos:transport:websocket",
-          "urn:x-nmos:transport:mqtt"
-        ]
-      }
-    ],
-    "format": "uri"
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__transportfile"><span class="parent">/single/senders/{senderId}</span>/transportfile</a> <span class="methods"><a href="#single_senders__senderid__transportfile_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__transportfile" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__transportfile_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Redirects to the location of the sender&#39;s transport file or returns the transport file directly. Check HTTP response code to determine which mode of operation is in use. When returning the transport file directly ensure that the <code>Content-Type</code> entity header is correctly set.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__transportfile_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/transportfile</h4></div><div class="modal-body"><div class="alert alert-info"><p>Redirects to the location of the sender&#39;s transport file or returns the transport file directly. Check HTTP response code to determine which mode of operation is in use. When returning the transport file directly ensure that the <code>Content-Type</code> entity header is correctly set.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__transportfile_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__transportfile_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__transportfile_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__transportfile_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>The transport file itself will be served</p><h2>HTTP status code <a href="http://httpstatus.es/307" target="_blank">307</a></h2><p>A temporary redirect to the transport file</p><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_senders__senderid__transporttype"><span class="parent">/single/senders/{senderId}</span>/transporttype</a> <span class="methods"><a href="#single_senders__senderid__transporttype_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_senders__senderid__transporttype" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_senders__senderid__transporttype_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Returns the URN base for the transport type employed by this sender with any subclassifications or versions removed.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_senders__senderid__transporttype_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/senders/{senderId}</span>/transporttype</h4></div><div class="modal-body"><div class="alert alert-info"><p>Returns the URN base for the transport type employed by this sender with any subclassifications or versions removed.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_senders__senderid__transporttype_get_request" data-toggle="tab">Request</a></li><li><a href="#single_senders__senderid__transporttype_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_senders__senderid__transporttype_get_request"><h3>URI Parameters</h3><ul><li><strong>senderId</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="single_senders__senderid__transporttype_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Transport Type",
+  "description": "Transport type URN base used by the Sender or Receiver (i.e. with any subclassifications or versions removed)",
+  "type": "string",
+  "oneOf": [
+    {
+      "enum": [
+        "urn:x-nmos:transport:rtp",
+        "urn:x-nmos:transport:dash",
+        "urn:x-nmos:transport:websocket",
+        "urn:x-nmos:transport:mqtt"
+      ]
+    }
+  ],
+  "format": "uri"
 }
 </code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>"urn:x-nmos:transport:mqtt"</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers"><span class="parent">/single</span>/receivers</a> <span class="methods"><a href="#single_receivers_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List available receivers. All UUIDs are appended with / to indicate the ID forms part of the URL for the next layer down.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single</span>/receivers</h4></div><div class="modal-body"><div class="alert alert-info"><p>List available receivers. All UUIDs are appended with / to indicate the ID forms part of the URL for the next layer down.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
@@ -1564,7 +1578,6 @@ pre code {
   "type": "array",
   "description": "Used to express the dynamic constraints on transport parameters. These constraints may be set and changed at run time. Parameters must also conform with constraints inferred from the specification. Every transport parameter must have an entry, even if it is only an empty object.",
   "title": "Constraints",
-  "maxitems": 2,
   "items": {
     "anyOf":[
       {
@@ -1713,10 +1726,22 @@ pre code {
       8883
     ]
   },
-  "broker_topic": {}
+  "broker_topic": {},
+  "broker_protocol": {
+    "enum": [
+      "mqtt"
+    ]
+  },
+  "broker_authorization": {
+    "enum": [
+      false
+    ]
+  },
+  "connection_status_broker_topic": {}
 }]
 </code></pre><p><strong>WebSocketPlusExt</strong>:<br></p><pre><code>[{
   "connection_uri": {},
+  "connection_authorization": {},
   "ext_subscription_data": {},
   "ext_retry_timeout": {
     "maximum": 60,
@@ -1753,29 +1778,7 @@ pre code {
       "$ref": "activation-response-schema.json"
     },
     "transport_file": {
-      "type": "object",
-      "description": "Transport file parameters",
-      "additionalProperties": false,
-      "required": [
-        "data",
-        "type"
-      ],
-      "properties": {
-        "data": {
-          "description": "Content of the transport file",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "type": {
-          "description": "IANA assigned media type for file (e.g application/sdp)",
-          "type": [
-            "string",
-            "null"
-          ]
-        }
-      }
+      "$ref": "receiver-transport-file.json"
     },
     "transport_params": {
       "description": "Transport-specific parameters",
@@ -1930,28 +1933,10 @@ pre code {
       "$ref": "activation-schema.json"
     },
     "transport_file": {
-      "type": "object",
-      "description": "Transport file parameters",
-      "additionalProperties": false,
-      "properties": {
-        "data": {
-          "description": "Content of the transport file",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "type": {
-          "description": "IANA assigned media type for file (e.g application/sdp)",
-          "type": [
-            "string",
-            "null"
-          ]
-        }
-      }
+      "$ref": "receiver-transport-file.json"
     },
     "transport_params": {
-      "description": "Transport-specific parameters",
+      "description": "Transport-specific parameters. If this parameter is included in a client request it must include the same number of array elements (or &#39;legs&#39;) as specified in the constraints. If no changes are required to a specific leg it must be included as an empty object ({}).",
       "anyOf": [{
           "$ref": "receiver_transport_params_rtp.json"
         },
@@ -2094,29 +2079,7 @@ pre code {
       "$ref": "activation-response-schema.json"
     },
     "transport_file": {
-      "type": "object",
-      "description": "Transport file parameters",
-      "additionalProperties": false,
-      "required": [
-        "data",
-        "type"
-      ],
-      "properties": {
-        "data": {
-          "description": "Content of the transport file",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "type": {
-          "description": "IANA assigned media type for file (e.g application/sdp)",
-          "type": [
-            "string",
-            "null"
-          ]
-        }
-      }
+      "$ref": "receiver-transport-file.json"
     },
     "transport_params": {
       "description": "Transport-specific parameters",
@@ -2260,29 +2223,7 @@ pre code {
       "$ref": "activation-response-schema.json"
     },
     "transport_file": {
-      "type": "object",
-      "description": "Transport file parameters",
-      "additionalProperties": false,
-      "required": [
-        "data",
-        "type"
-      ],
-      "properties": {
-        "data": {
-          "description": "Content of the transport file",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "type": {
-          "description": "IANA assigned media type for file (e.g application/sdp)",
-          "type": [
-            "string",
-            "null"
-          ]
-        }
-      }
+      "$ref": "receiver-transport-file.json"
     },
     "transport_params": {
       "description": "Transport-specific parameters",
@@ -2388,7 +2329,7 @@ pre code {
   "error": "`source_ip` must be a valid IPv4 or IPv6 address",
   "debug": null
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p><h2>HTTP status code <a href="http://httpstatus.es/423" target="_blank">423</a></h2><p>Returned when the resource is locked because an activation has been scheduled. A resource may be unlocked by setting <code>mode</code> in <code>activation</code> to <code>null</code>, which will cancel the pending activation. This may be done in the same request as a change to other parameters.</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A 500 response may be returned if the transport file could not be parsed, or there is some failure caused by activation which was not caused by a violation or schema or constraints.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p><h2>HTTP status code <a href="http://httpstatus.es/423" target="_blank">423</a></h2><p>Returned when the resource is locked because an activation has been scheduled. A resource may be unlocked by setting <code>mode</code> in <code>activation</code> to <code>null</code>, which will cancel the pending activation. This may be done in the same request as a change to other parameters.</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A 500 response may be returned if the transport file could not be parsed, or there is some failure caused by activation which was not caused by a violation of schema or constraints.</p><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "description": "Describes the standard error response which is returned with HTTP codes 400 and above",
@@ -2450,29 +2391,7 @@ pre code {
       "$ref": "activation-response-schema.json"
     },
     "transport_file": {
-      "type": "object",
-      "description": "Transport file parameters",
-      "additionalProperties": false,
-      "required": [
-        "data",
-        "type"
-      ],
-      "properties": {
-        "data": {
-          "description": "Content of the transport file",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "type": {
-          "description": "IANA assigned media type for file (e.g application/sdp)",
-          "type": [
-            "string",
-            "null"
-          ]
-        }
-      }
+      "$ref": "receiver-transport-file.json"
     },
     "transport_params": {
       "description": "Transport-specific parameters",
@@ -2534,7 +2453,10 @@ pre code {
   "transport_params": [{
     "source_host": "broker.mydomain.com",
     "source_port": 1883,
-    "broker_topic": "my_topic_name"
+    "broker_topic": "my_topic_name",
+    "broker_protocol": "mqtt",
+    "broker_authorization": false,
+    "connection_status_broker_topic": "my_status_topic_name"
   }]
 }
 </code></pre><p><strong>Uninitialised</strong>:<br></p><pre><code>{
@@ -2564,21 +2486,21 @@ pre code {
     "rtp_enabled": true
   }]
 }
-</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__transporttype"><span class="parent">/single/receivers/{receiverId}</span>/transporttype</a> <span class="methods"><a href="#single_receivers__receiverid__transporttype_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid__transporttype" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__transporttype_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Returns the URN for the transport type employed by this receiver.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__transporttype_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/transporttype</h4></div><div class="modal-body"><div class="alert alert-info"><p>Returns the URN for the transport type employed by this receiver.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__transporttype_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__transporttype_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__transporttype_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__transporttype_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Transport Type",
-    "description": "Transport type used by the Sender or Receiver in URN format",
-    "type": "string",
-    "oneOf": [
-      {
-        "enum": [
-          "urn:x-nmos:transport:rtp",
-          "urn:x-nmos:transport:dash",
-          "urn:x-nmos:transport:websocket",
-          "urn:x-nmos:transport:mqtt"
-        ]
-      }
-    ],
-    "format": "uri"
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the requested resource does not exist</p></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_single_receivers__receiverid__transporttype"><span class="parent">/single/receivers/{receiverId}</span>/transporttype</a> <span class="methods"><a href="#single_receivers__receiverid__transporttype_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_single_receivers__receiverid__transporttype" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#single_receivers__receiverid__transporttype_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Returns the URN base for the transport type employed by this receiver with any subclassifications or versions removed.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="single_receivers__receiverid__transporttype_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/single/receivers/{receiverId}</span>/transporttype</h4></div><div class="modal-body"><div class="alert alert-info"><p>Returns the URN base for the transport type employed by this receiver with any subclassifications or versions removed.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#single_receivers__receiverid__transporttype_get_request" data-toggle="tab">Request</a></li><li><a href="#single_receivers__receiverid__transporttype_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="single_receivers__receiverid__transporttype_get_request"><h3>URI Parameters</h3><ul><li><strong>receiverId</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="single_receivers__receiverid__transporttype_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Transport Type",
+  "description": "Transport type URN base used by the Sender or Receiver (i.e. with any subclassifications or versions removed)",
+  "type": "string",
+  "oneOf": [
+    {
+      "enum": [
+        "urn:x-nmos:transport:rtp",
+        "urn:x-nmos:transport:dash",
+        "urn:x-nmos:transport:websocket",
+        "urn:x-nmos:transport:mqtt"
+      ]
+    }
+  ],
+  "format": "uri"
 }
 </code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>"urn:x-nmos:transport:mqtt"</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Returned when the resource does not exist</p></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#">Base</a></li><li><a href="#bulk">Bulk control interface</a></li><li><a href="#single">Single control interface</a></li></ul></div></div></div></div></body></html>

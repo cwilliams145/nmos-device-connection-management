@@ -20,6 +20,7 @@
 - [error](error.json)
 - [receiver-response-schema](receiver-response-schema.json)
 - [receiver-stage-schema](receiver-stage-schema.json)
+- [receiver-transport-file](receiver-transport-file.json)
 - [receiver_transport_params_dash](receiver_transport_params_dash.json)
 - [receiver_transport_params_ext](receiver_transport_params_ext.json)
 - [receiver_transport_params_mqtt](receiver_transport_params_mqtt.json)

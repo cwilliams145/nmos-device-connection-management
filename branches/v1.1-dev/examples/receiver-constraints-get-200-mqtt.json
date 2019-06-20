@@ -6,5 +6,16 @@
       8883
     ]
   },
-  "broker_topic": {}
+  "broker_topic": {},
+  "broker_protocol": {
+    "enum": [
+      "mqtt"
+    ]
+  },
+  "broker_authorization": {
+    "enum": [
+      false
+    ]
+  },
+  "connection_status_broker_topic": {}
 }]
