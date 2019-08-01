@@ -6,4 +6,6 @@
 
 [v1.0.x](v1.0.x/)
 
+[v1.1-comments](v1.1-comments/)
+
 [v1.1-dev](v1.1-dev/)
