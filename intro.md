@@ -1,4 +1,4 @@
-# AMWA IS-05 NMOS Device Connection Management Specification
+# AMWA IS-05 NMOS Device Connection Management Specification (Stable)
 
 IS-05 is an AMWA NMOS Specification for connection of networked media devices
 

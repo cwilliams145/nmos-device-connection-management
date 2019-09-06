@@ -5,7 +5,7 @@ theme: jekyll-theme-primer
 baseurl: /nmos-device-connection-management
 
 # Which relase or branch appears in header links and on the home page
-default_tree: tags/v1.0.1 # alternatively e.g. branches/v1.0.x
+default_tree: tags/v1.1 # alternatively e.g. branches/v1.0.x
 
 # Regex patterns of tags (releases) and branches to show
 show_tags: v[0-9]*\.[0-9]*
