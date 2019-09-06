@@ -50,4 +50,6 @@ The documenation and API links immediately below, and the links in the page head
 
 [v1.0.1](tags/v1.0.1/)
 
+[v1.0.2](tags/v1.0.2/)
+
 [v1.1](tags/v1.1/)
