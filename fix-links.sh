@@ -15,6 +15,9 @@ for file in {branches,tags}/*/docs/*.md; do
     # Same but for reference links
     perl -ni -e '@parts = split /(\]:.*?\.md)/ ; for ($n = 1; $n < @parts; $n += 2) { $parts[$n] =~ s/%20/_/g; }; print @parts' "$file"
 
+    # Fix overview links
+    perl -pi -e 's:github.com/AMWA-TV/nmos/blob/master/NMOS_Technical_Overview.md:amwa-tv.github.io/nmos/branches/master/NMOS_Technical_Overview.html:gi;' "$file"
+
 done
 
 # Removing the unwanted "schemas/" in .html links due to raml2html v6 workaround
