@@ -1,17 +1,17 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "description": "Describes the Connection API /single/receivers/{receiverId} base resource",
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "description": "Describes the Connection API /single/receivers/{receiverId} base resource", 
     "items": {
         "enum": [
-            "constraints/",
-            "staged/",
+            "constraints/", 
+            "staged/", 
             "active/"
-        ],
-        "maxItems": 3,
-        "minItems": 3,
-        "type": "string",
+        ], 
+        "maxItems": 3, 
+        "minItems": 3, 
+        "type": "string", 
         "uniqueItems": true
-    },
-    "title": "Connection API /single/receivers/{receiverId} base resource",
+    }, 
+    "title": "Connection API /single/receivers/{receiverId} base resource", 
     "type": "array"
 }

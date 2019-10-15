@@ -1,280 +1,280 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "additionalProperties": false,
-    "description": "Describes a sender",
+    "$schema": "http://json-schema.org/draft-04/schema#", 
+    "additionalProperties": false, 
+    "description": "Describes a sender", 
     "properties": {
         "activation": {
-            "$schema": "http://json-schema.org/draft-04/schema#",
-            "additionalProperties": false,
-            "description": "Parameters concerned with activation of the transport parameters",
+            "$schema": "http://json-schema.org/draft-04/schema#", 
+            "additionalProperties": false, 
+            "description": "Parameters concerned with activation of the transport parameters", 
             "properties": {
                 "activation_time": {
                     "anyOf": [
                         {
-                            "pattern": "^[0-9]+:[0-9]+$",
+                            "pattern": "^[0-9]+:[0-9]+$", 
                             "type": "string"
-                        },
+                        }, 
                         {
                             "type": "null"
                         }
-                    ],
+                    ], 
                     "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating the absolute time the receiver will or did actually activate for scheduled activations, or the time activation occurred for immediate activations. On the staged endpoint this field returns to null once the activation is completed or when the resource is unlocked by setting the activation mode to null. For immediate activations on the staged endpoint this property will be the time the activation actually occurred in the response to the PATCH request, but null in response to any GET requests thereafter."
-                },
+                }, 
                 "mode": {
                     "anyOf": [
                         {
                             "enum": [
-                                "activate_immediate",
-                                "activate_scheduled_absolute",
+                                "activate_immediate", 
+                                "activate_scheduled_absolute", 
                                 "activate_scheduled_relative"
-                            ],
+                            ], 
                             "type": "string"
-                        },
+                        }, 
                         {
                             "type": "null"
                         }
-                    ],
+                    ], 
                     "description": "Mode of activation: immediate (on message receipt), scheduled_absolute (when internal clock >= requested_time), scheduled_relative (when internal clock >= time of message receipt + requested_time), or null (no activation scheduled). This parameter returns to null on the staged endpoint once an activation is completed or when it is explicitly set to null. For immediate activations, in the response to the PATCH request this field will be set to 'activate_immediate', but will be null in response to any subsequent GET requests."
-                },
+                }, 
                 "requested_time": {
                     "anyOf": [
                         {
-                            "pattern": "^[0-9]+:[0-9]+$",
+                            "pattern": "^[0-9]+:[0-9]+$", 
                             "type": "string"
-                        },
+                        }, 
                         {
                             "type": "null"
                         }
-                    ],
+                    ], 
                     "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating time (absolute or relative) for activation requested. This field returns to null once the activation is completed on the staged endpoint or when the resource is unlocked by setting the activation mode to null. For an immediate activation this field will always be null on the staged endpoint, even in the response to the PATCH request."
                 }
-            },
+            }, 
             "required": [
-                "mode",
-                "requested_time",
+                "mode", 
+                "requested_time", 
                 "activation_time"
-            ],
+            ], 
             "type": "object"
-        },
+        }, 
         "master_enable": {
-            "description": "Master on/off control for sender",
+            "description": "Master on/off control for sender", 
             "type": "boolean"
-        },
+        }, 
         "receiver_id": {
-            "description": "ID of the target Receiver of this Sender. This will be null if the sender is operating in multicast mode, or has not been assigned a receiver in unicast mode, or is sending to a non-NMOS receiver in unicast mode.",
-            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "description": "ID of the target Receiver of this Sender. This will be null if the sender is operating in multicast mode, or has not been assigned a receiver in unicast mode, or is sending to a non-NMOS receiver in unicast mode.", 
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", 
             "type": [
-                "string",
+                "string", 
                 "null"
             ]
-        },
+        }, 
         "transport_params": {
-            "description": "Transport-specific parameters",
+            "description": "Transport-specific parameters", 
             "oneOf": [
                 {
-                    "$schema": "http://json-schema.org/draft-04/schema#",
-                    "description": "Describes RTP Sender transport parameters. The constraints in this schema are minimum constraints, but may be further constrained at the constraints endpoint. As a minimum all senders must support `source_ip`, `destination_ip`, `source_port`, `rtp_enabled` and `destination_port`. Senders supporting FEC and/or RTCP must support parameters prefixed with `fec` and `rtcp` respectively.",
+                    "$schema": "http://json-schema.org/draft-04/schema#", 
+                    "description": "Describes RTP Sender transport parameters. The constraints in this schema are minimum constraints, but may be further constrained at the constraints endpoint. As a minimum all senders must support `source_ip`, `destination_ip`, `source_port`, `rtp_enabled` and `destination_port`. Senders supporting FEC and/or RTCP must support parameters prefixed with `fec` and `rtcp` respectively.", 
                     "items": {
                         "properties": {
                             "destination_ip": {
                                 "anyOf": [
                                     {
                                         "format": "ipv4"
-                                    },
+                                    }, 
                                     {
                                         "format": "ipv6"
-                                    },
+                                    }, 
                                     {
                                         "pattern": "^auto$"
                                     }
-                                ],
-                                "description": "IP address to which RTP packets will be sent. If auto is set the sender should select a multicast address to send to itself. For example it may implement MADCAP (RFC 2730), ZMAAP, or be allocated address by some other system responsible for co-ordination multicast address use.",
+                                ], 
+                                "description": "IP address to which RTP packets will be sent. If auto is set the sender should select a multicast address to send to itself. For example it may implement MADCAP (RFC 2730), ZMAAP, or be allocated address by some other system responsible for co-ordination multicast address use.", 
                                 "type": "string"
-                            },
+                            }, 
                             "destination_port": {
-                                "description": "destination port for RTP packets (auto = 5004 by default)",
-                                "maximum": 65535,
-                                "minimum": 1,
-                                "pattern": "^auto$",
+                                "description": "destination port for RTP packets (auto = 5004 by default)", 
+                                "maximum": 65535, 
+                                "minimum": 1, 
+                                "pattern": "^auto$", 
                                 "type": [
-                                    "integer",
+                                    "integer", 
                                     "string"
                                 ]
-                            },
+                            }, 
                             "fec1D_destination_port": {
-                                "description": "destination port for RTP Column FEC packets (auto = RTP destination_port + 2 by default)",
-                                "maximum": 65535,
-                                "minimum": 1,
-                                "pattern": "^auto$",
+                                "description": "destination port for RTP Column FEC packets (auto = RTP destination_port + 2 by default)", 
+                                "maximum": 65535, 
+                                "minimum": 1, 
+                                "pattern": "^auto$", 
                                 "type": [
-                                    "integer",
+                                    "integer", 
                                     "string"
                                 ]
-                            },
+                            }, 
                             "fec1D_source_port": {
-                                "description": "source port for RTP FEC packets (auto = RTP source_port + 2 by default)",
-                                "maximum": 65535,
-                                "minimum": 0,
-                                "pattern": "^auto$",
+                                "description": "source port for RTP FEC packets (auto = RTP source_port + 2 by default)", 
+                                "maximum": 65535, 
+                                "minimum": 0, 
+                                "pattern": "^auto$", 
                                 "type": [
-                                    "integer",
+                                    "integer", 
                                     "string"
                                 ]
-                            },
+                            }, 
                             "fec2D_destination_port": {
-                                "description": "destination port for RTP Row FEC packets (auto = RTP destination_port + 4 by default)",
-                                "maximum": 65535,
-                                "minimum": 1,
-                                "pattern": "^auto$",
+                                "description": "destination port for RTP Row FEC packets (auto = RTP destination_port + 4 by default)", 
+                                "maximum": 65535, 
+                                "minimum": 1, 
+                                "pattern": "^auto$", 
                                 "type": [
-                                    "integer",
+                                    "integer", 
                                     "string"
                                 ]
-                            },
+                            }, 
                             "fec2D_source_port": {
-                                "description": "source port for RTP FEC packets (auto = RTP source_port + 4 by default)",
-                                "maximum": 65535,
-                                "minimum": 0,
-                                "pattern": "^auto$",
+                                "description": "source port for RTP FEC packets (auto = RTP source_port + 4 by default)", 
+                                "maximum": 65535, 
+                                "minimum": 0, 
+                                "pattern": "^auto$", 
                                 "type": [
-                                    "integer",
+                                    "integer", 
                                     "string"
                                 ]
-                            },
+                            }, 
                             "fec_block_height": {
-                                "description": "height of block over which FEC is calculated in packets",
-                                "maximum": 200,
-                                "minimum": 4,
+                                "description": "height of block over which FEC is calculated in packets", 
+                                "maximum": 200, 
+                                "minimum": 4, 
                                 "type": "integer"
-                            },
+                            }, 
                             "fec_block_width": {
-                                "description": "width of block over which FEC is calculated in packets",
-                                "maximum": 200,
-                                "minimum": 4,
+                                "description": "width of block over which FEC is calculated in packets", 
+                                "maximum": 200, 
+                                "minimum": 4, 
                                 "type": "integer"
-                            },
+                            }, 
                             "fec_destination_ip": {
                                 "anyOf": [
                                     {
                                         "format": "ipv4"
-                                    },
+                                    }, 
                                     {
                                         "format": "ipv6"
-                                    },
+                                    }, 
                                     {
                                         "pattern": "^auto$"
                                     }
-                                ],
-                                "description": "May be used if NAT is being used at the destination (auto = destination_ip by default)",
+                                ], 
+                                "description": "May be used if NAT is being used at the destination (auto = destination_ip by default)", 
                                 "type": "string"
-                            },
+                            }, 
                             "fec_enabled": {
-                                "description": "FEC on/off",
+                                "description": "FEC on/off", 
                                 "type": "boolean"
-                            },
+                            }, 
                             "fec_mode": {
-                                "description": "forward error correction mode to apply",
+                                "description": "forward error correction mode to apply", 
                                 "enum": [
-                                    "1D",
+                                    "1D", 
                                     "2D"
-                                ],
+                                ], 
                                 "type": "string"
-                            },
+                            }, 
                             "fec_type": {
-                                "description": "forward error correction mode to apply",
+                                "description": "forward error correction mode to apply", 
                                 "enum": [
-                                    "XOR",
+                                    "XOR", 
                                     "Reed-Solomon"
-                                ],
+                                ], 
                                 "type": "string"
-                            },
+                            }, 
                             "rtcp_destination_ip": {
                                 "anyOf": [
                                     {
                                         "format": "ipv4"
-                                    },
+                                    }, 
                                     {
                                         "format": "ipv6"
-                                    },
+                                    }, 
                                     {
                                         "pattern": "^auto$"
                                     }
-                                ],
-                                "description": "IP address to which RTCP packets will be sent (auto = same as RTP destination_ip by default)",
+                                ], 
+                                "description": "IP address to which RTCP packets will be sent (auto = same as RTP destination_ip by default)", 
                                 "type": "string"
-                            },
+                            }, 
                             "rtcp_destination_port": {
-                                "description": "destination port for RTCP packets (auto = RTP destination_port + 1 by default)",
-                                "maximum": 65535,
-                                "minimum": 1,
-                                "pattern": "^auto$",
+                                "description": "destination port for RTCP packets (auto = RTP destination_port + 1 by default)", 
+                                "maximum": 65535, 
+                                "minimum": 1, 
+                                "pattern": "^auto$", 
                                 "type": [
-                                    "integer",
+                                    "integer", 
                                     "string"
                                 ]
-                            },
+                            }, 
                             "rtcp_enabled": {
-                                "description": "rtcp on/off",
+                                "description": "rtcp on/off", 
                                 "type": "boolean"
-                            },
+                            }, 
                             "rtcp_source_port": {
-                                "description": "source port for RTCP packets (auto = RTP source_port + 1 by default)",
-                                "maximum": 65535,
-                                "minimum": 0,
-                                "pattern": "^auto$",
+                                "description": "source port for RTCP packets (auto = RTP source_port + 1 by default)", 
+                                "maximum": 65535, 
+                                "minimum": 0, 
+                                "pattern": "^auto$", 
                                 "type": [
-                                    "integer",
+                                    "integer", 
                                     "string"
                                 ]
-                            },
+                            }, 
                             "rtp_enabled": {
-                                "description": "RTP transmission active/inactive",
+                                "description": "RTP transmission active/inactive", 
                                 "type": "boolean"
-                            },
+                            }, 
                             "source_ip": {
                                 "anyOf": [
                                     {
                                         "format": "ipv4"
-                                    },
+                                    }, 
                                     {
                                         "format": "ipv6"
-                                    },
+                                    }, 
                                     {
                                         "pattern": "^auto$"
                                     }
-                                ],
-                                "description": "IP address from which RTP packets will be sent (IP address of interface bound to this output). The sender should provide an enum in the constraints endpoint, which should contain the available interface addresses. If the parameter is set to auto the sender should establish for itself which interface it should use, based on routing rules or its own internal configuration.",
+                                ], 
+                                "description": "IP address from which RTP packets will be sent (IP address of interface bound to this output). The sender should provide an enum in the constraints endpoint, which should contain the available interface addresses. If the parameter is set to auto the sender should establish for itself which interface it should use, based on routing rules or its own internal configuration.", 
                                 "type": "string"
-                            },
+                            }, 
                             "source_port": {
-                                "description": "source port for RTP packets (auto = 5004 by default)",
-                                "maximum": 65535,
-                                "minimum": 0,
-                                "pattern": "^auto$",
+                                "description": "source port for RTP packets (auto = 5004 by default)", 
+                                "maximum": 65535, 
+                                "minimum": 0, 
+                                "pattern": "^auto$", 
                                 "type": [
-                                    "integer",
+                                    "integer", 
                                     "string"
                                 ]
                             }
-                        },
-                        "title": "Sender Output",
+                        }, 
+                        "title": "Sender Output", 
                         "type": "object"
-                    },
-                    "title": "RTP Sender Transport Parameters",
+                    }, 
+                    "title": "RTP Sender Transport Parameters", 
                     "type": "array"
-                },
+                }, 
                 {
                     "not": {}
                 }
             ]
         }
-    },
+    }, 
     "required": [
-        "receiver_id",
-        "master_enable",
-        "activation",
+        "receiver_id", 
+        "master_enable", 
+        "activation", 
         "transport_params"
-    ],
-    "title": "Sender resource",
+    ], 
+    "title": "Sender resource", 
     "type": "object"
 }
