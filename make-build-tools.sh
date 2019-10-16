@@ -2,4 +2,4 @@
 
 yarn add raml2html
 yarn add jsonlint
-sudo pip install jsonref pathlib
+sudo pip3 install jsonref pathlib
