@@ -1,278 +1,278 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#", 
-    "description": "Describes a bulk receiver update resource", 
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Describes a bulk receiver update resource",
     "items": {
-        "additionalProperties": false, 
+        "additionalProperties": false,
         "properties": {
             "id": {
-                "description": "ID of the target receiver to apply parameters to", 
-                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", 
+                "description": "ID of the target receiver to apply parameters to",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
                 "type": "string"
-            }, 
+            },
             "params": {
-                "$schema": "http://json-schema.org/draft-04/schema#", 
-                "additionalProperties": false, 
-                "description": "Describes a receiver", 
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "additionalProperties": false,
+                "description": "Describes a receiver",
                 "properties": {
                     "activation": {
-                        "$schema": "http://json-schema.org/draft-04/schema#", 
-                        "additionalProperties": false, 
-                        "description": "Parameters concerned with activation of the transport parameters", 
+                        "$schema": "http://json-schema.org/draft-04/schema#",
+                        "additionalProperties": false,
+                        "description": "Parameters concerned with activation of the transport parameters",
                         "properties": {
                             "mode": {
                                 "anyOf": [
                                     {
                                         "enum": [
-                                            "activate_immediate", 
-                                            "activate_scheduled_absolute", 
+                                            "activate_immediate",
+                                            "activate_scheduled_absolute",
                                             "activate_scheduled_relative"
-                                        ], 
+                                        ],
                                         "type": "string"
-                                    }, 
+                                    },
                                     {
                                         "type": "null"
                                     }
-                                ], 
+                                ],
                                 "description": "Mode of activation: immediate (on message receipt), scheduled_absolute (when internal clock >= requested_time), scheduled_relative (when internal clock >= time of message receipt + requested_time), or null (no activation scheduled)"
-                            }, 
+                            },
                             "requested_time": {
                                 "anyOf": [
                                     {
-                                        "pattern": "^[0-9]+:[0-9]+$", 
+                                        "pattern": "^[0-9]+:[0-9]+$",
                                         "type": "string"
-                                    }, 
+                                    },
                                     {
                                         "type": "null"
                                     }
-                                ], 
-                                "default": null, 
+                                ],
+                                "default": null,
                                 "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating time (absolute or relative) for activation"
                             }
-                        }, 
+                        },
                         "required": [
                             "mode"
-                        ], 
-                        "title": "Activation resource", 
+                        ],
+                        "title": "Activation resource",
                         "type": "object"
-                    }, 
+                    },
                     "master_enable": {
-                        "default": true, 
-                        "description": "Master on/off control for receiver", 
+                        "default": true,
+                        "description": "Master on/off control for receiver",
                         "type": "boolean"
-                    }, 
+                    },
                     "sender_id": {
-                        "description": "ID of the Sender subscribed to by this Receiver. This will be null if the receiver has not been configured to receive anything, or if it is receiving from a non-NMOS sender.", 
-                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$", 
+                        "description": "ID of the Sender subscribed to by this Receiver. This will be null if the receiver has not been configured to receive anything, or if it is receiving from a non-NMOS sender.",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
                         "type": [
-                            "string", 
+                            "string",
                             "null"
                         ]
-                    }, 
+                    },
                     "transport_file": {
-                        "additionalProperties": false, 
-                        "description": "Transport file parameters", 
+                        "additionalProperties": false,
+                        "description": "Transport file parameters",
                         "properties": {
                             "data": {
-                                "description": "Content of the transport file", 
+                                "description": "Content of the transport file",
                                 "type": [
-                                    "string", 
+                                    "string",
                                     "null"
                                 ]
-                            }, 
+                            },
                             "type": {
-                                "description": "IANA assigned media type for file (e.g application/sdp)", 
+                                "description": "IANA assigned media type for file (e.g application/sdp)",
                                 "type": [
-                                    "string", 
+                                    "string",
                                     "null"
                                 ]
                             }
-                        }, 
+                        },
                         "type": "object"
-                    }, 
+                    },
                     "transport_params": {
-                        "description": "Transport-specific parameters", 
+                        "description": "Transport-specific parameters",
                         "oneOf": [
                             {
-                                "$schema": "http://json-schema.org/draft-04/schema#", 
-                                "description": "Describes RTP Receiver transport parameters. The constraints in this schema are minimum constraints, but may be further constrained at the constraints endpoint. Receivers must support at least the `source_ip`, `interface_ip`, `rtp_enabled` and `destination_port` parameters, and must support the `multicast_ip` parameter if they are capable of multicast operation. Receivers supporting FEC and/or RTCP must support parameters prefixed with `fec` and `rtcp` respectively.", 
+                                "$schema": "http://json-schema.org/draft-04/schema#",
+                                "description": "Describes RTP Receiver transport parameters. The constraints in this schema are minimum constraints, but may be further constrained at the constraints endpoint. Receivers must support at least the `source_ip`, `interface_ip`, `rtp_enabled` and `destination_port` parameters, and must support the `multicast_ip` parameter if they are capable of multicast operation. Receivers supporting FEC and/or RTCP must support parameters prefixed with `fec` and `rtcp` respectively.",
                                 "items": {
                                     "properties": {
                                         "destination_port": {
-                                            "default": "auto", 
-                                            "description": "destination port for RTP packets (auto = 5004)", 
-                                            "maximum": 65535, 
-                                            "minimum": 1, 
-                                            "pattern": "^auto$", 
+                                            "default": "auto",
+                                            "description": "destination port for RTP packets (auto = 5004)",
+                                            "maximum": 65535,
+                                            "minimum": 1,
+                                            "pattern": "^auto$",
                                             "type": [
-                                                "integer", 
+                                                "integer",
                                                 "string"
                                             ]
-                                        }, 
+                                        },
                                         "fec1D_destination_port": {
-                                            "default": "auto", 
-                                            "description": "destination port for RTP Column FEC packets (auto = RTP destination_port + 2)", 
-                                            "maximum": 65535, 
-                                            "minimum": 1, 
-                                            "pattern": "^auto$", 
+                                            "default": "auto",
+                                            "description": "destination port for RTP Column FEC packets (auto = RTP destination_port + 2)",
+                                            "maximum": 65535,
+                                            "minimum": 1,
+                                            "pattern": "^auto$",
                                             "type": [
-                                                "integer", 
+                                                "integer",
                                                 "string"
                                             ]
-                                        }, 
+                                        },
                                         "fec2D_destination_port": {
-                                            "default": "auto", 
-                                            "description": "destination port for RTP Row FEC packets (auto = RTP destination_port + 4)", 
-                                            "maximum": 65535, 
-                                            "minimum": 1, 
-                                            "pattern": "^auto$", 
+                                            "default": "auto",
+                                            "description": "destination port for RTP Row FEC packets (auto = RTP destination_port + 4)",
+                                            "maximum": 65535,
+                                            "minimum": 1,
+                                            "pattern": "^auto$",
                                             "type": [
-                                                "integer", 
+                                                "integer",
                                                 "string"
                                             ]
-                                        }, 
+                                        },
                                         "fec_destination_ip": {
                                             "anyOf": [
                                                 {
                                                     "format": "ipv4"
-                                                }, 
+                                                },
                                                 {
                                                     "format": "ipv6"
-                                                }, 
+                                                },
                                                 {
                                                     "pattern": "^auto$"
                                                 }
-                                            ], 
-                                            "default": "auto", 
-                                            "description": "May be used if NAT is being used at the destination (auto = multicast_ip (multicast mode) or interface_ip (unicast mode))", 
+                                            ],
+                                            "default": "auto",
+                                            "description": "May be used if NAT is being used at the destination (auto = multicast_ip (multicast mode) or interface_ip (unicast mode))",
                                             "type": "string"
-                                        }, 
+                                        },
                                         "fec_enabled": {
-                                            "default": false, 
-                                            "description": "FEC on/off", 
+                                            "default": false,
+                                            "description": "FEC on/off",
                                             "type": "boolean"
-                                        }, 
+                                        },
                                         "fec_mode": {
-                                            "default": "auto", 
-                                            "description": "forward error correction mode to apply. (auto = highest possible number of dimensions available)", 
+                                            "default": "auto",
+                                            "description": "forward error correction mode to apply. (auto = highest possible number of dimensions available)",
                                             "enum": [
-                                                "auto", 
-                                                "1D", 
+                                                "auto",
+                                                "1D",
                                                 "2D"
-                                            ], 
+                                            ],
                                             "type": "string"
-                                        }, 
+                                        },
                                         "interface_ip": {
                                             "anyOf": [
                                                 {
                                                     "format": "ipv4"
-                                                }, 
+                                                },
                                                 {
                                                     "format": "ipv6"
-                                                }, 
+                                                },
                                                 {
                                                     "pattern": "^auto$"
                                                 }
-                                            ], 
-                                            "default": "auto", 
-                                            "description": "IP address of the network interface the receiver should use. The receiver should provide an enum in the constraints endpoint, which should contain 'auto', and the available interface addresses. If set to auto in multicast mode the receiver should determine which interface to use for itself, for example by using the routing tables. The behaviour of auto is undefined in unicast mode, and controllers should supply a specific interface address.", 
+                                            ],
+                                            "default": "auto",
+                                            "description": "IP address of the network interface the receiver should use. The receiver should provide an enum in the constraints endpoint, which should contain 'auto', and the available interface addresses. If set to auto in multicast mode the receiver should determine which interface to use for itself, for example by using the routing tables. The behaviour of auto is undefined in unicast mode, and controllers should supply a specific interface address.",
                                             "type": "string"
-                                        }, 
+                                        },
                                         "multicast_ip": {
                                             "anyOf": [
                                                 {
                                                     "format": "ipv4"
-                                                }, 
+                                                },
                                                 {
                                                     "format": "ipv6"
-                                                }, 
+                                                },
                                                 {
                                                     "type": "null"
                                                 }
-                                            ], 
-                                            "description": "IP multicast group address used in multicast operation only. Should be set to null during unicast operation. A null value indicates the parameter has not been configured, or the receiver is operating in unicast mode.", 
+                                            ],
+                                            "description": "IP multicast group address used in multicast operation only. Should be set to null during unicast operation. A null value indicates the parameter has not been configured, or the receiver is operating in unicast mode.",
                                             "type": [
-                                                "string", 
+                                                "string",
                                                 "null"
                                             ]
-                                        }, 
+                                        },
                                         "rtcp_destination_ip": {
                                             "anyOf": [
                                                 {
                                                     "format": "ipv4"
-                                                }, 
+                                                },
                                                 {
                                                     "format": "ipv6"
-                                                }, 
+                                                },
                                                 {
                                                     "pattern": "^auto$"
                                                 }
-                                            ], 
-                                            "default": "auto", 
-                                            "description": "Destination IP address of RTCP packets (auto = multicast_ip (multicast mode) or interface_ip (unicast mode))", 
+                                            ],
+                                            "default": "auto",
+                                            "description": "Destination IP address of RTCP packets (auto = multicast_ip (multicast mode) or interface_ip (unicast mode))",
                                             "type": "string"
-                                        }, 
+                                        },
                                         "rtcp_destination_port": {
-                                            "default": "auto", 
-                                            "description": "destination port for RTCP packets (auto = RTP destination_port + 1)", 
-                                            "maximum": 65535, 
-                                            "minimum": 1, 
-                                            "pattern": "^auto$", 
+                                            "default": "auto",
+                                            "description": "destination port for RTCP packets (auto = RTP destination_port + 1)",
+                                            "maximum": 65535,
+                                            "minimum": 1,
+                                            "pattern": "^auto$",
                                             "type": [
-                                                "integer", 
+                                                "integer",
                                                 "string"
                                             ]
-                                        }, 
+                                        },
                                         "rtcp_enabled": {
-                                            "default": false, 
-                                            "description": "RTCP on/off", 
+                                            "default": false,
+                                            "description": "RTCP on/off",
                                             "type": "boolean"
-                                        }, 
+                                        },
                                         "rtp_enabled": {
-                                            "default": true, 
-                                            "description": "RTP reception active/inactive", 
+                                            "default": true,
+                                            "description": "RTP reception active/inactive",
                                             "type": "boolean"
-                                        }, 
+                                        },
                                         "source_ip": {
                                             "anyOf": [
                                                 {
                                                     "format": "ipv4"
-                                                }, 
+                                                },
                                                 {
                                                     "format": "ipv6"
-                                                }, 
+                                                },
                                                 {
                                                     "type": "null"
                                                 }
-                                            ], 
-                                            "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the receiver has not yet been configured, or in any-source multicast mode.", 
+                                            ],
+                                            "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the receiver has not yet been configured, or in any-source multicast mode.",
                                             "type": [
-                                                "string", 
+                                                "string",
                                                 "null"
                                             ]
                                         }
-                                    }, 
-                                    "title": "Receiver Input", 
+                                    },
+                                    "title": "Receiver Input",
                                     "type": "object"
-                                }, 
-                                "title": "RTP Receiver Transport Parameters", 
+                                },
+                                "title": "RTP Receiver Transport Parameters",
                                 "type": "array"
-                            }, 
+                            },
                             {
                                 "not": {}
                             }
                         ]
                     }
-                }, 
-                "title": "Receiver resource", 
+                },
+                "title": "Receiver resource",
                 "type": "object"
             }
-        }, 
+        },
         "required": [
-            "id", 
+            "id",
             "params"
-        ], 
+        ],
         "type": "object"
-    }, 
-    "title": "Bulk receiver resource", 
+    },
+    "title": "Bulk receiver resource",
     "type": "array"
 }
