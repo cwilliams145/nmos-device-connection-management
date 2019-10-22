@@ -2,3 +2,41 @@
 layout: default
 title: Example examples/v1.0-bulk-post-confirm.json
 ---               
+<html>
+<meta charset="UTF-8">
+<h2>Example: v1.0-bulk-post-confirm.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+[
+    {
+        "id": "0a174530-e3cf-11e6-bf01-fe55135034f3",
+        "code": 200
+    },
+    {
+        "id": "7a3ebebe-0405-11e7-93ae-92361f002671",
+        "code": 200
+    },
+    {
+        "id": "7a3ec21a-0405-11e7-93ae-92361f002671",
+        "code": 200
+    },
+    {
+        "id": "7a3ec3b4-0405-11e7-93ae-92361f002671",
+        "code": 400,
+        "error": "Un-recognised parameter 'frc_enabled'",
+        "debug": "<stack trace>"
+    }
+]
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>

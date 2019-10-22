@@ -2,3 +2,48 @@
 layout: default
 title: Schema schemas/with-refs/receiver-transport-file.json
 ---
+<html>
+<meta charset="UTF-8">
+<h2>Schema: receiver-transport-file.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "description": "Transport file parameters. 'data' and 'type' must both be strings or both be null",
+  "title": "Transport file",
+  "additionalProperties": false,
+  "required": [
+    "data",
+    "type"
+  ],
+  "properties": {
+    "data": {
+      "description": "Content of the transport file",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "type": {
+      "description": "IANA assigned media type for file (e.g application/sdp)",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>

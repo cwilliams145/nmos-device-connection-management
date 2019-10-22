@@ -2,3 +2,42 @@
 layout: default
 title: Example examples/receiver-active-get-200-mqtt.json
 ---               
+<html>
+<meta charset="UTF-8">
+<h2>Example: receiver-active-get-200-mqtt.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "sender_id": "eae33112-b56c-4a36-8b68-05ab5b6268bc",
+  "master_enable": true,
+  "activation": {
+    "mode": "activate_immediate",
+    "requested_time": "1541508905:0",
+    "activation_time": "1541508905:263900"
+  },
+  "transport_file": {
+    "data": null,
+    "type": null
+  },
+  "transport_params": [{
+    "source_host": "broker.mydomain.com",
+    "source_port": 1883,
+    "broker_topic": "my_topic_name",
+    "broker_protocol": "mqtt",
+    "broker_authorization": false,
+    "connection_status_broker_topic": "my_status_topic_name"
+  }]
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>

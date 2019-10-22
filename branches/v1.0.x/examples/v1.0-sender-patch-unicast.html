@@ -2,3 +2,36 @@
 layout: default
 title: Example examples/v1.0-sender-patch-unicast.json
 ---               
+<html>
+<meta charset="UTF-8">
+<h2>Example: v1.0-sender-patch-unicast.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "receiver_id": "0b174530-e3cf-41e6-bf01-fe55135034f3",
+  "master_enable": true,
+  "activation": {
+    "mode": "activate_scheduled_relative",
+    "requested_time": "2:0"
+  },
+  "transport_params": [{
+    "source_ip": "192.168.200.10",
+    "destination_ip": "192.168.200.15",
+    "source_port": 5000,
+    "destination_port": 5000,
+    "rtp_enabled": true
+  }]
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>

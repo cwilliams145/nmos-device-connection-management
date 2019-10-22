@@ -2,3 +2,32 @@
 layout: default
 title: Schema schemas/with-refs/receiver_transport_params_ext.json
 ---
+<html>
+<meta charset="UTF-8">
+<h2>Schema: receiver_transport_params_ext.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Describes external Receiver transport parameters defined in other AMWA IS specifications. The constraints in this schema are minimum constraints, but may be further constrained at the constraints endpoint.",
+  "title": "External Receiver Transport Parameters",
+  "type":[
+    "string",
+    "boolean",
+    "null",
+    "number"
+  ]
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>

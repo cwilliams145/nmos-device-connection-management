@@ -2,3 +2,43 @@
 layout: default
 title: Example examples/sender-constraints-get-200-mqtt.json
 ---               
+<html>
+<meta charset="UTF-8">
+<h2>Example: sender-constraints-get-200-mqtt.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+[{
+  "destination_host": {},
+  "destination_port": {
+    "enum": [
+      1833,
+      8883
+    ]
+  },
+  "broker_topic": {
+    "enum": [
+      "fixedTopicName1",
+      "fixedTopicName2"
+    ]
+  },
+  "broker_protocol": {},
+  "broker_authorization": {},
+  "connection_status_broker_topic": {
+    "enum": [
+      "connStatusTopic"
+    ]
+  }
+}]
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>

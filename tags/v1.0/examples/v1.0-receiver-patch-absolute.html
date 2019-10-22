@@ -2,3 +2,34 @@
 layout: default
 title: Example examples/v1.0-receiver-patch-absolute.json
 ---               
+<html>
+<meta charset="UTF-8">
+<h2>Example: v1.0-receiver-patch-absolute.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+    "sender_id": "5709255c-c0ae-4e1e-99a0-e872e83e48e0",
+    "master_enable": true,
+    "activation": {
+        "mode": "activate_scheduled_absolute",
+        "requested_time": "1496677550:20"
+    },
+    "transport_params": [{
+        "source_ip": "172.23.19.49"
+    }, {
+        "source_ip": "172.23.19.49"
+    }]
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>

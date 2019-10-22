@@ -2,3 +2,30 @@
 layout: default
 title: Example examples/receiver-constraints-get-200-websocket-ext.json
 ---               
+<html>
+<meta charset="UTF-8">
+<h2>Example: receiver-constraints-get-200-websocket-ext.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+[{
+  "connection_uri": {},
+  "connection_authorization": {},
+  "ext_subscription_data": {},
+  "ext_retry_timeout": {
+    "maximum": 60,
+    "minimum": 5
+  }
+}]
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>

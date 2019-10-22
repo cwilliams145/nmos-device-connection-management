@@ -2,3 +2,1934 @@
 layout: default
 title: Schema schemas/resolved/constraints-schema.json
 ---
+<html>
+<meta charset="UTF-8">
+<h2>Schema: constraints-schema.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "anyOf": [
+        {
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "description": "Used to express the dynamic constraints on RTP transport parameters. These constraints may be set and changed at run time. Every transport parameter must have an entry, even if it is only an empty object.",
+                "patternProperties": {
+                    "^ext_[a-zA-Z0-9_]+$": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "properties": {
+                    "destination_ip": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "destination_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec1D_destination_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec1D_source_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec2D_destination_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec2D_source_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec_block_height": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec_block_width": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec_destination_ip": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec_enabled": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec_mode": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "fec_type": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "interface_ip": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "multicast_ip": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "rtcp_destination_ip": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "rtcp_destination_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "rtcp_enabled": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "rtcp_source_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "rtp_enabled": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "source_ip": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "source_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "type": "array"
+        },
+        {
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "description": "Used to express the dynamic constraints on WebSocket transport parameters. These constraints may be set and changed at run time. Every transport parameter must have an entry, even if it is only an empty object.",
+                "patternProperties": {
+                    "^ext_[a-zA-Z0-9_]+$": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "properties": {
+                    "connection_authorization": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "connection_uri": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "type": "array"
+        },
+        {
+            "items": {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "description": "Used to express the dynamic constraints on MQTT transport parameters. These constraints may be set and changed at run time. Every transport parameter must have an entry, even if it is only an empty object.",
+                "patternProperties": {
+                    "^ext_[a-zA-Z0-9_]+$": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "properties": {
+                    "broker_authorization": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "broker_protocol": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "broker_topic": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "connection_status_broker_topic": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "destination_host": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "destination_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "source_host": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "source_port": {
+                        "additionalProperties": false,
+                        "description": "The constraints for a single transport parameter",
+                        "properties": {
+                            "description": {
+                                "description": "A human readable string describing the constraint (optional)",
+                                "type": "string"
+                            },
+                            "enum": {
+                                "description": "An array of allowed values",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "null"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "minItems": 1,
+                                "type": "array",
+                                "uniqueItems": true
+                            },
+                            "maximum": {
+                                "description": "The inclusive maximum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "minimum": {
+                                "description": "The inclusive minimum value the parameter can be set to",
+                                "type": [
+                                    "integer",
+                                    "number"
+                                ]
+                            },
+                            "pattern": {
+                                "description": "A regex pattern that must be satisfied for this parameter",
+                                "format": "regex",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "type": "array"
+        }
+    ],
+    "description": "Used to express the dynamic constraints on transport parameters. These constraints may be set and changed at run time. Parameters must also conform with constraints inferred from the specification. Every transport parameter must have an entry, even if it is only an empty object.",
+    "title": "Constraints"
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>

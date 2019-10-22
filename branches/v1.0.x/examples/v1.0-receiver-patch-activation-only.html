@@ -2,3 +2,27 @@
 layout: default
 title: Example examples/v1.0-receiver-patch-activation-only.json
 ---               
+<html>
+<meta charset="UTF-8">
+<h2>Example: v1.0-receiver-patch-activation-only.json</h2>
+<div id="json-render"></div>
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "activation": {
+    "mode": "activate_immediate",
+    "requested_time": null
+  }
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ]
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+
+</html>
