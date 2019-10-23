@@ -40,28 +40,31 @@ title: API $i
 EOF
                     # Need to reference rather than embedd !included types. 
                     # The XXXGTXXXs are to escape '<' characters that raml2html treats specially
-                    perl -pi.bak -e 's~type: *!include *schemas/(.*)\.json~type: XXXGTXXXa href="schemas/resolved/$1.html">$1XXXGTXXXa>~' $i
-                    raml2html $i >> "$HTML_API"
-                    mv $i.bak $i
-                    perl -pi -e 's/XXXGTXXX/</g' "$HTML_API"
+                    # perl -pi.bak -e 's~type: *!include *schemas/(.*)\.json~type: XXXGTXXXa href="schemas/resolved/$1.html">$1XXXGTXXXa>~' $i
+                    raml2html -p --theme raml2html-nmos-theme $i >> "$HTML_API"
+                    # mv $i.bak $i
+                    # perl -pi -e 's/XXXGTXXX/</g' "$HTML_API"
                 done
                 mkdir "../../$target_dir/html-APIs"
                 mv *.html "../../$target_dir/html-APIs/"
+                cp ../../json-formatter.js "../../$target_dir/html-APIs/"
+
                 if [ -d schemas ]; then
                     echo "Linting schemas..."
                     jsonlint -v schemas/*.json
-                    echo "Rendering schemas..."
-                    mkdir schemas/with-refs schemas/resolved 
-                    for i in schemas/{with-refs,resolved}/*.json; do
+                    echo "Rendering with-refs schemas..."
+                    mkdir schemas/with-refs
+                    for i in schemas/with-refs/*.json; do
                         HTML_SCHEMA=${i%%.json}.html
-                        echo "Generating $HTML_SCHEMA from $i..."
-                        cat << EOF > "$HTML_SCHEMA"
----
-layout: default
-title: Schema $i
----
-EOF
-                        ../../render-json.sh $i "Schema: ${i##*/}" >> "$HTML_SCHEMA"
+                        # echo "Generating $HTML_SCHEMA from $i..."
+                        ../../render-json.sh "$i" "Schema ${i##*/}" "../../${HTML_SCHEMA/with-refs/resolved}" "Resolve referenced schemas" > "$HTML_SCHEMA"
+                    done
+                    echo "Rendering resolved schemas..."
+                    mkdir schemas/resolved
+                    for i in schemas/resolved/*.json; do
+                        HTML_SCHEMA=${i%%.json}.html
+                        # echo "Generating $HTML_SCHEMA from $i..."
+                        ../../render-json.sh "$i" "Schema ${i##*/}" "../../${HTML_SCHEMA/resolved/with-refs}" "Show referenced schemas with \$ref" > "$HTML_SCHEMA"
                     done
                     echo "Moving schemas..."
                     mkdir "../../$target_dir/html-APIs/schemas"
@@ -84,14 +87,8 @@ EOF
             echo "Rendering examples..."
             for i in examples/*.json; do
                HTML_EXAMPLE=${i%%.json}.html 
-               echo "Generating $HTML_EXAMPLE from $i..." 
-               cat << EOF > "$HTML_EXAMPLE"
----
-layout: default
-title: Example $i
----               
-EOF
-               ../render-json.sh $i "Example: ${i##*/}" >> "$HTML_EXAMPLE"
+               # echo "Rendering $HTML_EXAMPLE from $i..." 
+               ../render-json.sh $i "Example ${i##*/}" >> "$HTML_EXAMPLE"
             done
             echo "Moving examples..."
             mkdir "../$target_dir/examples"
