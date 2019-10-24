@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "jsonlint": "^1.6.3",
+    "raml2html": "^7.4.0",
+    "raml2html-nmos-theme": "file:./raml2html-nmos-theme"
+  }
+}
