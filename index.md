@@ -2,6 +2,8 @@
 
 # {{ site.github.project_tagline }}
 
+[![Build Status](https://travis-ci.com/AMWA-TV/nmos-device-connection-management.svg)](https://travis-ci.com/AMWA-TV/nmos-device-connection-management)
+
 IS-05 is an AMWA NMOS Specification for connection of networked media devices
 
 It has been developed by the [Advanced Media Workflow Association](https://www.amwa.tv) as part of the [Networked Media Open Specifications](https://www.nmos.tv) initative.

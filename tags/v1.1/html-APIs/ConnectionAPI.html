@@ -16,6 +16,7 @@ title: API ConnectionAPI.raml
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script type="text/javascript" src="json-formatter.js"></script>
     <script type="text/javascript">
+      // (c) AMWA 2019
       $(document).ready(function() {
         $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
           // check if the element contains JSON and store it as a data attribute
@@ -55,6 +56,20 @@ title: API ConnectionAPI.raml
                 el.parent()[0].appendChild(formatter.render());
                 // prevent duplicate rendering if the modal is re-opened
                 el.data('json-formatted', 'true');
+                // create collapse and expand buttons
+                var collapseBtn = $('<button class="btn btn-default btn-sm" type="button">Collapse</button>');
+                var expandBtn = $('<button class="btn btn-default btn-sm" type="button">Expand</button>');
+                // collapse click handler
+                collapseBtn.on('click', function() {
+                  formatter.openAtDepth(1);
+                });
+                // expand click handler
+                expandBtn.on('click', function() {
+                  formatter.openAtDepth(Infinity);
+                });
+                // add expand and collapse buttons above the rendered JSON
+                el.parent().prepend(expandBtn);
+                el.parent().prepend(collapseBtn);
               });
             });
             element.modal('show');
@@ -71,7 +86,6 @@ title: API ConnectionAPI.raml
           } catch (e) {}
         });
       });
-    </script>
     </script>
     <style>
       .hljs {
