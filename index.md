@@ -14,21 +14,21 @@
 ### What does it do?
 
 - Provides a transport-independent way of connecting Media Nodes
+  - Supports RTP, WebSocket and MQTT connections
 - Supports single + bulk connections, immediate + delayed connections
 
 ### Why does it matter?
 
 - ST 2110 does not specify how to do this
-- Danger of multiple proprietary approaches
-- Provides extensibility to other types of IP transport
-  - e.g. for  IS-07 events
+  - So without IS-05 there is a danger of multiple proprietary approaches
+  - ...and difficulty in adopting new stream formats.
+- Provides support for new specifications
+  - such as IS-07 event transport
 
 ### How does it work?
 
-- IS-04 provides information about Senders and Receivers
 - Control application sends instructions to Media Nodes
-- ``transportfile`` parameter conveys the connection information for ST 2110 streams
-
+- ``transport_params`` conveys the connection information
 
 
 ---
@@ -38,7 +38,7 @@ IS-05 has been developed by the [Advanced Media Workflow Association](https://ww
 
 See [here](https://amwa-tv.github.io/nmos) for an overview of NMOS specifications.
 
-The formal (template) specification is provided in [this GitHub repository](https://github.com/AMWA-TV/nmos-device-connection-management). These pages provide supporting documentation and HTML renders of the APIs (which are specified in RAML and JSON Schema).
+The formal specification is provided in [this GitHub repository](https://github.com/AMWA-TV/nmos-device-connection-management). These pages provide supporting documentation and HTML renders of the APIs (which are specified in RAML and JSON Schema).
 
 The documentation and API links immediately below, and the links in the page heading, are for an example development branch. Links to [other releases (tags)](tags/) and [other branches](branches/) appear later in the page, or under "VERSIONS..." in the page heading.
 
