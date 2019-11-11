@@ -4,16 +4,47 @@
 
 [![Build Status](https://travis-ci.com/AMWA-TV/nmos-device-connection-management.svg)](https://travis-ci.com/AMWA-TV/nmos-device-connection-management)
 
+
+
+---
+
+## About IS-05
+
+
 IS-05 is an AMWA NMOS Specification for connection of networked media devices
 
-It has been developed by the [Advanced Media Workflow Association](https://www.amwa.tv) as part of the [Networked Media Open Specifications](https://www.nmos.tv) initative.
+### What does it do?
+
+- Provides a transport-independent way of connecting Media Nodes
+- Supports single + bulk connections, immediate + delayed connections
+
+### Why does it matter?
+
+- ST 2110 does not specify how to do this
+- Danger of multiple proprietary approaches
+- Provides extensibility to other types of IP transport
+  - e.g. for  IS-07 events
+
+### How does it work?
+
+- IS-04 provides information about Senders and Receivers
+- Control application sends instructions to Media Nodes
+- ``transportfile`` parameter conveys the connection information for ST 2110 streams
+
+
+
+---
+
+
+IS-05 has been developed by the [Advanced Media Workflow Association](https://www.amwa.tv) as part of the [Networked Media Open Specifications](https://www.nmos.tv) initiative.
 
 See [here](https://amwa-tv.github.io/nmos) for an overview of NMOS specifications.
 
-The formal IS-05 specification is provided in [this GitHub repository](https://github.com/AMWA-TV/nmos-device-connection-management). These pages provide supporting documentation and HTML renders of the APIs (which are specified in RAML and JSON Schema).
+The formal (template) specification is provided in [this GitHub repository](https://github.com/AMWA-TV/nmos-device-connection-management). These pages provide supporting documentation and HTML renders of the APIs (which are specified in RAML and JSON Schema).
 
-The documentation and API links immediately below, and the links in the page heading, are for the _most recent approved release_ of the Specification (which may be earlier than what is shown by the default branch on the GitHub repo). Links to [other releases (tags)](tags/) and [other branches](branches/) appear later in the page, or under "VERSIONS..." in the page heading.
+The documentation and API links immediately below, and the links in the page heading, are for an example development branch. Links to [other releases (tags)](tags/) and [other branches](branches/) appear later in the page, or under "VERSIONS..." in the page heading.
 
+Once AMWA has approved a Specification, its documentation and API links will be for the _most recent approved release_ (which may be earlier than what is shown by the default branch on the GitHub repo).
 
 ## Documentation for release/tag v1.1
 
@@ -41,10 +72,6 @@ The documentation and API links immediately below, and the links in the page hea
 
 
 ## Branches
-
-[v1.0.x](branches/v1.0.x/)
-
-[v1.1.x](branches/v1.1.x/)
 
 ## Releases/Tags
 

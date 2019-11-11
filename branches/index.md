@@ -3,7 +3,3 @@
 # {{ site.github.project_tagline }}
 
 ## Branches
-
-[v1.0.x](v1.0.x/)
-
-[v1.1.x](v1.1.x/)
