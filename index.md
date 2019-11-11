@@ -11,8 +11,6 @@
 ## About IS-05
 
 
-IS-05 is an AMWA NMOS Specification for connection of networked media devices
-
 ### What does it do?
 
 - Provides a transport-independent way of connecting Media Nodes
