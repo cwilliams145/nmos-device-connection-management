@@ -1,0 +1,47 @@
+---
+layout: default
+title: Example sender-active-get-mqtt.json
+---
+
+<html>
+<meta charset="UTF-8">
+<h2>Example sender-active-get-mqtt.json</h2>
+<div id="json-render">
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "receiver_id": "69744dfb-0557-4202-b1f1-4d1a741ee2bb",
+  "master_enable": true,
+  "activation": {
+    "mode": "activate_immediate",
+    "requested_time": "1541508905:0",
+    "activation_time": "1541508905:0"
+  },
+  "transport_params": [{
+    "destination_host": "broker.mydomain.com",
+    "destination_port": 1883,
+    "broker_topic": "my_topic_name",
+    "broker_protocol": "mqtt",
+    "broker_authorization": false,
+    "connection_status_broker_topic": "my_status_topic_name"
+  }]
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ],
+        sortPropertiesBy: function(a, b) {
+           if (a === "title") { return -1; }
+           if (b === "title") { return 1; }
+           if (a === "description") { return -1; }
+           if (b === "description") { return 1; }
+           return a > b;
+        }
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+</div>
+</html>

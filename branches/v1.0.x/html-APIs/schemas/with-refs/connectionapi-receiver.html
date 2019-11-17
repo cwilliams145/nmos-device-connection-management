@@ -1,0 +1,50 @@
+---
+layout: default
+title: Schema connectionapi-receiver.json
+---
+
+<html>
+<meta charset="UTF-8">
+<h2>Schema connectionapi-receiver.json</h2>
+<p>
+    <a href="../../schemas/resolved/connectionapi-receiver.html">Resolve referenced schemas</a>
+</p>
+<div id="json-render">
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "description": "Describes the Connection API /single/receivers/{receiverId} base resource",
+  "title": "Connection API /single/receivers/{receiverId} base resource",
+  "items": {
+    "type": "string",
+    "enum": [
+      "constraints/",
+      "staged/",
+      "active/"
+    ],
+    "minItems": 3,
+    "maxItems": 3,
+    "uniqueItems": true
+  }
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ],
+        sortPropertiesBy: function(a, b) {
+           if (a === "title") { return -1; }
+           if (b === "title") { return 1; }
+           if (a === "description") { return -1; }
+           if (b === "description") { return 1; }
+           return a > b;
+        }
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+</div>
+</html>

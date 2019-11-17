@@ -1,0 +1,83 @@
+---
+layout: default
+title: Schema receiver_transport_params_websocket.json
+---
+
+<html>
+<meta charset="UTF-8">
+<h2>Schema receiver_transport_params_websocket.json</h2>
+<p>
+    <a href="../../schemas/with-refs/receiver_transport_params_websocket.html">Show referenced schemas with $ref</a>
+</p>
+<div id="json-render">
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "additionalProperties": false,
+    "description": "Describes WebSocket Receiver transport parameters. The constraints in this schema are minimum constraints, but may be further constrained at the constraints endpoint. WebSocket Receivers must support all parameters in this schema.",
+    "patternProperties": {
+        "^ext_[a-zA-Z0-9_]+$": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "description": "Describes external Receiver transport parameters defined in other AMWA IS specifications. The constraints in this schema are minimum constraints, but may be further constrained at the constraints endpoint.",
+            "title": "External Receiver Transport Parameters",
+            "type": [
+                "string",
+                "boolean",
+                "null",
+                "number"
+            ]
+        }
+    },
+    "properties": {
+        "connection_authorization": {
+            "description": "Indication of whether authorization is required to make a connection. If the parameter is set to auto the Receiver should establish for itself whether authorization should be used, based on its own internal configuration.",
+            "enum": [
+                "auto",
+                true,
+                false
+            ],
+            "type": [
+                "string",
+                "boolean"
+            ]
+        },
+        "connection_uri": {
+            "anyOf": [
+                {
+                    "format": "uri",
+                    "pattern": "^wss?://.*"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "URI hosting the WebSocket server as defined in RFC 6455 Section 3. A null value indicates that the receiver has not yet been configured.",
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    },
+    "title": "Receiver Input",
+    "type": "object"
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ],
+        sortPropertiesBy: function(a, b) {
+           if (a === "title") { return -1; }
+           if (b === "title") { return 1; }
+           if (a === "description") { return -1; }
+           if (b === "description") { return 1; }
+           return a > b;
+        }
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+</div>
+</html>

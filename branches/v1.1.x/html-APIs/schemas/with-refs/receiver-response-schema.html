@@ -1,0 +1,70 @@
+---
+layout: default
+title: Schema receiver-response-schema.json
+---
+
+<html>
+<meta charset="UTF-8">
+<h2>Schema receiver-response-schema.json</h2>
+<p>
+    <a href="../../schemas/resolved/receiver-response-schema.html">Resolve referenced schemas</a>
+</p>
+<div id="json-render">
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "description": "Describes a receiver",
+  "title": "Receiver resource",
+  "additionalProperties": false,
+  "required": [
+    "sender_id",
+    "master_enable",
+    "activation",
+    "transport_file",
+    "transport_params"
+  ],
+  "properties": {
+    "sender_id": {
+      "description": "ID of the Sender subscribed to by this Receiver. This will be null if the receiver has not been configured to receive anything, or if it is receiving from a non-NMOS sender.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "master_enable": {
+      "description": "Master on/off control for receiver",
+      "type": "boolean"
+    },
+    "activation": {
+      "$ref": "activation-response-schema.json"
+    },
+    "transport_file": {
+      "$ref": "receiver-transport-file.json"
+    },
+    "transport_params": {
+      "$ref": "receiver_transport_params.json"
+    }
+  }
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ],
+        sortPropertiesBy: function(a, b) {
+           if (a === "title") { return -1; }
+           if (b === "title") { return 1; }
+           if (a === "description") { return -1; }
+           if (b === "description") { return 1; }
+           return a > b;
+        }
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+</div>
+</html>

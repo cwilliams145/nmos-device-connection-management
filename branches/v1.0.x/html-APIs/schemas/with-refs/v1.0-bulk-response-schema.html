@@ -1,0 +1,69 @@
+---
+layout: default
+title: Schema v1.0-bulk-response-schema.json
+---
+
+<html>
+<meta charset="UTF-8">
+<h2>Schema v1.0-bulk-response-schema.json</h2>
+<p>
+    <a href="../../schemas/resolved/v1.0-bulk-response-schema.html">Resolve referenced schemas</a>
+</p>
+<div id="json-render">
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Describes a response to a bulk activation request",
+  "title": "Bulk activation response",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "code"
+    ],
+    "properties": {
+      "id": {
+        "description": "ID of a device to be activated",
+        "type": "string",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      },
+      "code": {
+        "description": "HTTP status code that would have resulted from an individual activation on this device",
+        "type": "integer",
+        "anyOf": [
+          { "minimum": 200, "maximum": 299 },
+          { "minimum": 400, "maximum": 599 }
+        ]
+      },
+      "error": {
+        "description": "Human readable message which is suitable for user interface display, and helpful to the user. Only included if 'code' indicates an error state",
+        "type": "string"
+      },
+      "debug": {
+        "description": "Debug information which may assist a programmer working with the API. Only included if 'code' indicates an error state",
+        "type": ["null", "string"]
+      }
+    }
+  }
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ],
+        sortPropertiesBy: function(a, b) {
+           if (a === "title") { return -1; }
+           if (b === "title") { return 1; }
+           if (a === "description") { return -1; }
+           if (b === "description") { return 1; }
+           return a > b;
+        }
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+</div>
+</html>

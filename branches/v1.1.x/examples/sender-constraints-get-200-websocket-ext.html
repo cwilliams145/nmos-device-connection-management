@@ -1,0 +1,47 @@
+---
+layout: default
+title: Example sender-constraints-get-200-websocket-ext.json
+---
+
+<html>
+<meta charset="UTF-8">
+<h2>Example sender-constraints-get-200-websocket-ext.json</h2>
+<div id="json-render">
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+[{
+  "connection_uri": {
+    "enum": [
+      "ws://172.29.80.65:5476/websocketServer"
+    ]
+  },
+  "connection_authorization": {
+    "enum": [
+      false
+    ]
+  },
+  "ext_subscription_data": {
+    "enum": [
+      "fixedConnectionParameter"
+    ]
+  }
+}]
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ],
+        sortPropertiesBy: function(a, b) {
+           if (a === "title") { return -1; }
+           if (b === "title") { return 1; }
+           if (a === "description") { return -1; }
+           if (b === "description") { return 1; }
+           return a > b;
+        }
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+</div>
+</html>

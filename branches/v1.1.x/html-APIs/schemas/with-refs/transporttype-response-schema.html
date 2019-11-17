@@ -1,0 +1,50 @@
+---
+layout: default
+title: Schema transporttype-response-schema.json
+---
+
+<html>
+<meta charset="UTF-8">
+<h2>Schema transporttype-response-schema.json</h2>
+<p>
+    <a href="../../schemas/resolved/transporttype-response-schema.html">Resolve referenced schemas</a>
+</p>
+<div id="json-render">
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Transport Type",
+  "description": "Transport type URN base used by the Sender or Receiver (i.e. with any subclassifications or versions removed)",
+  "type": "string",
+  "oneOf": [
+    {
+      "enum": [
+        "urn:x-nmos:transport:rtp",
+        "urn:x-nmos:transport:dash",
+        "urn:x-nmos:transport:websocket",
+        "urn:x-nmos:transport:mqtt"
+      ]
+    }
+  ],
+  "format": "uri"
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ],
+        sortPropertiesBy: function(a, b) {
+           if (a === "title") { return -1; }
+           if (b === "title") { return 1; }
+           if (a === "description") { return -1; }
+           if (b === "description") { return 1; }
+           return a > b;
+        }
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+</div>
+</html>

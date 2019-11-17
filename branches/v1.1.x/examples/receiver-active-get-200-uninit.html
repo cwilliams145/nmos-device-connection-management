@@ -1,0 +1,57 @@
+---
+layout: default
+title: Example receiver-active-get-200-uninit.json
+---
+
+<html>
+<meta charset="UTF-8">
+<h2>Example receiver-active-get-200-uninit.json</h2>
+<div id="json-render">
+<script type="text/javascript" src="json-formatter.js"></script>
+<script>
+const formatter = new JSONFormatter.default(
+{
+  "sender_id": null,
+  "master_enable": true,
+  "activation": {
+    "mode": null,
+    "requested_time": null,
+    "activation_time": null
+  },
+  "transport_file": {
+    "data": null,
+    "type": null
+  },
+  "transport_params": [{
+    "source_ip": null,
+    "multicast_ip": null,
+    "interface_ip": "172.23.19.35",
+    "destination_port": 5004,
+    "fec_enabled": false,
+    "fec_destination_ip": "172.23.19.35",
+    "fec1D_destination_port": 5006,
+    "fec2D_destination_port": 5008,
+    "rtcp_enabled": false,
+    "rtcp_destination_ip": "172.23.19.35",
+    "rtcp_destination_port": 5005,
+    "rtp_enabled": true
+  }]
+}
+,
+    3, // Collapse depth
+    {
+        pathsToCollapse: [
+            "properties.id"
+        ],
+        sortPropertiesBy: function(a, b) {
+           if (a === "title") { return -1; }
+           if (b === "title") { return 1; }
+           if (a === "description") { return -1; }
+           if (b === "description") { return 1; }
+           return a > b;
+        }
+    });
+document.getElementsByClassName("content")[0].appendChild(formatter.render());
+</script>
+</div>
+</html>
