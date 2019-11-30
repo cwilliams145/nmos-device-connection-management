@@ -61,9 +61,9 @@ Once AMWA has approved a Specification, its documentation and API links will be 
 
 ## APIs for release/tag v1.1
 
-- [ConnectionAPI](tags/v1.1/html-APIs/ConnectionAPI.html)
+- [ConnectionAPI](tags/v1.1/APIs/ConnectionAPI.html)
 
-### [JSON Schemas](tags/v1.1/html-APIs/schemas/)
+### [JSON Schemas](tags/v1.1/APIs/schemas/)
 
 
 ### [Examples](tags/v1.1/examples/)

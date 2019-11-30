@@ -20,9 +20,9 @@
 
 ## APIs for branch v1.1.x
 
-- [ConnectionAPI](html-APIs/ConnectionAPI.html)
+- [ConnectionAPI](APIs/ConnectionAPI.html)
 
-### [JSON Schemas](html-APIs/schemas/)
+### [JSON Schemas](APIs/schemas/)
 
 
 ### [Examples](examples/)

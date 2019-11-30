@@ -20,9 +20,9 @@
 
 ## APIs for release/tag v1.1
 
-- [ConnectionAPI](html-APIs/ConnectionAPI.html)
+- [ConnectionAPI](APIs/ConnectionAPI.html)
 
-### [JSON Schemas](html-APIs/schemas/)
+### [JSON Schemas](APIs/schemas/)
 
 
 ### [Examples](examples/)
