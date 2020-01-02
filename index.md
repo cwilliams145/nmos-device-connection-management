@@ -2,7 +2,7 @@
 
 # {{ site.github.project_tagline }}
 
-[![Build Status](https://travis-ci.com/AMWA-TV/nmos-device-connection-management.svg)](https://travis-ci.com/AMWA-TV/nmos-device-connection-management)
+[![Build Status](https://travis-ci.com/AMWA-TV/nmos-device-connection-management.svg?branch=v1.1.x)](https://travis-ci.com/AMWA-TV/nmos-device-connection-management)
 
 
 
