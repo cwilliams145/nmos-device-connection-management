@@ -231,13 +231,13 @@ pre code {
             "bulk/",
             "single/"
         ],
-        "maxItems": 2,
-        "minItems": 2,
-        "type": "string",
-        "uniqueItems": true
+        "type": "string"
     },
+    "maxItems": 2,
+    "minItems": 2,
     "title": "Connection API base resource",
-    "type": "array"
+    "type": "array",
+    "uniqueItems": true
 }
 </code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "bulk/",
@@ -251,13 +251,13 @@ pre code {
             "senders/",
             "receivers/"
         ],
-        "maxItems": 2,
-        "minItems": 2,
-        "type": "string",
-        "uniqueItems": true
+        "type": "string"
     },
+    "maxItems": 2,
+    "minItems": 2,
     "title": "Connection API /bulk base resource",
-    "type": "array"
+    "type": "array",
+    "uniqueItems": true
 }
 </code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "senders/",
@@ -1425,13 +1425,13 @@ pre code {
             "senders/",
             "receivers/"
         ],
-        "maxItems": 2,
-        "minItems": 2,
-        "type": "string",
-        "uniqueItems": true
+        "type": "string"
     },
+    "maxItems": 2,
+    "minItems": 2,
     "title": "Connection API /single base resource",
-    "type": "array"
+    "type": "array",
+    "uniqueItems": true
 }
 </code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "senders/",
@@ -1442,11 +1442,11 @@ pre code {
     "description": "Describes the Connection API sender/receiver base resource",
     "items": {
         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/$",
-        "type": "string",
-        "uniqueItems": true
+        "type": "string"
     },
     "title": "Connection API sender/receiver base resource",
-    "type": "array"
+    "type": "array",
+    "uniqueItems": true
 }
 </code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "c72cca5b-01db-47aa-bb00-03893defbfae/",
@@ -1464,13 +1464,13 @@ pre code {
             "transportfile/",
             "transporttype/"
         ],
-        "maxItems": 5,
-        "minItems": 5,
-        "type": "string",
-        "uniqueItems": true
+        "type": "string"
     },
+    "maxItems": 5,
+    "minItems": 5,
     "title": "Connection API /single/senders/{senderId} base resource",
-    "type": "array"
+    "type": "array",
+    "uniqueItems": true
 }
 </code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "constraints/",
@@ -6350,11 +6350,11 @@ pre code {
     "description": "Describes the Connection API sender/receiver base resource",
     "items": {
         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/$",
-        "type": "string",
-        "uniqueItems": true
+        "type": "string"
     },
     "title": "Connection API sender/receiver base resource",
-    "type": "array"
+    "type": "array",
+    "uniqueItems": true
 }
 </code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "c72cca5b-01db-47aa-bb00-03893defbfae/",
@@ -6371,13 +6371,13 @@ pre code {
             "active/",
             "transporttype/"
         ],
-        "maxItems": 4,
-        "minItems": 4,
-        "type": "string",
-        "uniqueItems": true
+        "type": "string"
     },
+    "maxItems": 4,
+    "minItems": 4,
     "title": "Connection API /single/receivers/{receiverId} base resource",
-    "type": "array"
+    "type": "array",
+    "uniqueItems": true
 }
 </code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
   "constraints/",
