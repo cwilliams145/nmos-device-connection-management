@@ -31,7 +31,7 @@ title: Schema receiver-transport-file.json
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "additionalProperties": false,
-    "description": "Transport file parameters. 'data' and 'type' must both be strings or both be null",
+    "description": "Transport file parameters. 'data' and 'type' must both be strings or both be null. If 'type' is non-null 'data' is expected to contain a valid instance of the specified media type.",
     "properties": {
         "data": {
             "description": "Content of the transport file",

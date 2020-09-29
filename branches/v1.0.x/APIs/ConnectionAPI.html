@@ -749,7 +749,7 @@ pre code {
                     },
                     "transport_file": {
                         "additionalProperties": false,
-                        "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
+                        "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null. If &#39;type&#39; is non-null &#39;data&#39; is expected to contain a valid instance of the specified media type.",
                         "properties": {
                             "data": {
                                 "description": "Content of the transport file",
@@ -912,7 +912,7 @@ pre code {
                                                     "type": "null"
                                                 }
                                             ],
-                                            "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the receiver has not yet been configured, or in any-source multicast mode.",
+                                            "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the source IP address has not been configured in unicast mode, or the Receiver is in any-source multicast mode.",
                                             "type": [
                                                 "string",
                                                 "null"
@@ -5862,7 +5862,7 @@ pre code {
         },
         "transport_file": {
             "additionalProperties": false,
-            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
+            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null. If &#39;type&#39; is non-null &#39;data&#39; is expected to contain a valid instance of the specified media type.",
             "properties": {
                 "data": {
                     "description": "Content of the transport file",
@@ -6029,7 +6029,7 @@ pre code {
                                         "type": "null"
                                     }
                                 ],
-                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the receiver has not yet been configured, or in any-source multicast mode.",
+                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the source IP address has not been configured in unicast mode, or the Receiver is in any-source multicast mode.",
                                 "type": [
                                     "string",
                                     "null"
@@ -6068,7 +6068,7 @@ pre code {
   },
   "transport_file": {
     "data": null,
-    "type": "application/sdp"
+    "type": null
   },
   "transport_params": [{
     "source_ip": "172.23.19.48",
@@ -6110,7 +6110,7 @@ pre code {
   },
   "transport_file": {
     "data": null,
-    "type": "application/sdp"
+    "type": null
   },
   "transport_params": [{
     "source_ip": "172.23.19.48",
@@ -6229,7 +6229,7 @@ pre code {
         },
         "transport_file": {
             "additionalProperties": false,
-            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
+            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null. If &#39;type&#39; is non-null &#39;data&#39; is expected to contain a valid instance of the specified media type.",
             "properties": {
                 "data": {
                     "description": "Content of the transport file",
@@ -6392,7 +6392,7 @@ pre code {
                                         "type": "null"
                                     }
                                 ],
-                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the receiver has not yet been configured, or in any-source multicast mode.",
+                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the source IP address has not been configured in unicast mode, or the Receiver is in any-source multicast mode.",
                                 "type": [
                                     "string",
                                     "null"
@@ -6582,7 +6582,7 @@ pre code {
         },
         "transport_file": {
             "additionalProperties": false,
-            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
+            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null. If &#39;type&#39; is non-null &#39;data&#39; is expected to contain a valid instance of the specified media type.",
             "properties": {
                 "data": {
                     "description": "Content of the transport file",
@@ -6749,7 +6749,7 @@ pre code {
                                         "type": "null"
                                     }
                                 ],
-                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the receiver has not yet been configured, or in any-source multicast mode.",
+                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the source IP address has not been configured in unicast mode, or the Receiver is in any-source multicast mode.",
                                 "type": [
                                     "string",
                                     "null"
@@ -6788,7 +6788,7 @@ pre code {
   },
   "transport_file": {
     "data": null,
-    "type": "application/sdp"
+    "type": null
   },
   "transport_params": [{
     "interface_ip": "192.168.200.15",
@@ -6842,7 +6842,7 @@ pre code {
   },
   "transport_file": {
     "data": null,
-    "type": "application/sdp"
+    "type": null
   },
   "transport_params": [{
     "interface_ip": "192.168.200.15",
@@ -6944,7 +6944,7 @@ pre code {
         },
         "transport_file": {
             "additionalProperties": false,
-            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
+            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null. If &#39;type&#39; is non-null &#39;data&#39; is expected to contain a valid instance of the specified media type.",
             "properties": {
                 "data": {
                     "description": "Content of the transport file",
@@ -7111,7 +7111,7 @@ pre code {
                                         "type": "null"
                                     }
                                 ],
-                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the receiver has not yet been configured, or in any-source multicast mode.",
+                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the source IP address has not been configured in unicast mode, or the Receiver is in any-source multicast mode.",
                                 "type": [
                                     "string",
                                     "null"
@@ -7150,7 +7150,7 @@ pre code {
   },
   "transport_file": {
     "data": null,
-    "type": "application/sdp"
+    "type": null
   },
   "transport_params": [{
     "interface_ip": "192.168.200.15",
@@ -7177,7 +7177,7 @@ pre code {
   },
   "transport_file": {
     "data": null,
-    "type": "application/sdp"
+    "type": null
   },
   "transport_params": [{
     "interface_ip": "192.168.200.15",
@@ -7336,7 +7336,7 @@ pre code {
         },
         "transport_file": {
             "additionalProperties": false,
-            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null",
+            "description": "Transport file parameters. &#39;data&#39; and &#39;type&#39; must both be strings or both be null. If &#39;type&#39; is non-null &#39;data&#39; is expected to contain a valid instance of the specified media type.",
             "properties": {
                 "data": {
                     "description": "Content of the transport file",
@@ -7503,7 +7503,7 @@ pre code {
                                         "type": "null"
                                     }
                                 ],
-                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the receiver has not yet been configured, or in any-source multicast mode.",
+                                "description": "Source IP address of RTP packets in unicast mode, source filter for source specific multicast. A null value indicates that the source IP address has not been configured in unicast mode, or the Receiver is in any-source multicast mode.",
                                 "type": [
                                     "string",
                                     "null"
