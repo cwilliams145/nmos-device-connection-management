@@ -4,7 +4,7 @@
 
 | Repository | Default Branch | Lint (default) | Render (all) |
 | --- | --- | --- | --- |
-| [nmos-device-connection-management](https://github.com/AMWA-TV/nmos-device-connection-management) | v1.1.x | <a href="https://travis-ci.com/AMWA-TV/nmos-device-connection-management?branch=v1.1.x"><img src="https://travis-ci.com/AMWA-TV/nmos-device-connection-management.svg?branch=v1.1.x" width="100"/></a> | <a href="https://travis-ci.com/AMWA-TV/nmos-device-connection-management?branch=gh-pages"><img src="https://travis-ci.com/AMWA-TV/nmos-device-connection-management.svg?branch=gh-pages" width="100"/></a> |
+| [nmos-device-connection-management](https://github.com/AMWA-TV/nmos-device-connection-management) | v1.1.x | [![Lint Status](https://github.com/AMWA-TV/nmos-device-connection-management/workflows/Lint/badge.svg)](https://github.com/AMWA-TV/nmos-device-connection-management/actions?query=workflow%3ALint) | [![Render Status](https://github.com/AMWA-TV/nmos-device-connection-management/workflows/Render/badge.svg)](https://github.com/AMWA-TV/nmos-device-connection-management/actions?query=workflow%3ARender) |
 
 
 ---
